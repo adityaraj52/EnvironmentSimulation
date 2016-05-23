@@ -33,7 +33,7 @@ dependencies:
 #    - npm install coffeescript # install from a different package manager
 #    - gem uninstall bundler # use a custom version of bundler
 #    - gem install bundler --pre
-    - sudo apt-get install doxygen graphviz
+#    - sudo apt-get install doxygen graphviz
 
 
 ## Customize test commands
