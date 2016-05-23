@@ -1,0 +1,9 @@
+*.*
+!.gitignore
+!pom.xml
+!circle.yml
+!*.md
+!*.java
+
+target/**
+
