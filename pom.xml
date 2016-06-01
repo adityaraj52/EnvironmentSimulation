@@ -237,6 +237,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <encoding>${file.encoding}</encoding>
                     <extension>true</extension>
                     <packageName>environment.dataimport.source</packageName>
                 </configuration>
