@@ -4,15 +4,8 @@ machine:
   timezone:
     Europe/Berlin
 
-  # Version of ruby to use
   java:
     version: oraclejdk8
-      
-
-  # Override /etc/hosts
-  #hosts:
-  #  circlehost: 127.0.0.1
-  #  dev.mycompany.com: 127.0.0.1
 
   # Add some environment variable
   environment:
@@ -21,28 +14,40 @@ machine:
     GIT_COMMITTER_NAME: CircleCI
     GIT_COMMITTER_EMAIL: adityaraj5252@gmail.com 
 
-## Customize checkout
-checkout:
-  post:
-    - git submodule sync
-    - git submodule update --init # use submodules
 
 ## Customize dependencies
 dependencies:
-  pre:
-#    - npm install coffeescript # install from a different package manager
-#    - gem uninstall bundler # use a custom version of bundler
-#    - gem install bundler --pre
-#    - sudo apt-get install doxygen graphviz
+    pre:
+        - sudo apt-get install doxygen
 
 
 ## Customize test commands
 test:
-  override:
-    - phpunit test/unit-tests # use PHPunit for testing
-  post:
-    - bundle exec rake jasmine:ci: # add an extra test type
-        environment:
-          RAILS_ENV: test
-          RACK_ENV: test
+    override:
+        - mvn -Dbuild.number=${CIRCLE_BUILD_NUM} -Dbuild.commit=${CIRCLE_SHA1}
+        - mvn site
+
+    post:
+
+        # Maven Site CircleCI build
+        - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+        - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+
+        # Documentation Build with Update to GH-Pages Branch
+        - git checkout master
+        - mv target/site /tmp
+        - git checkout gh-pages
+        - mv circle.yml /tmp
+        - mv .gitignore /tmp
+        - git checkout master
+        - git push origin :gh-pages
+        - git branch -D gh-pages
+        - git checkout --orphan gh-pages
+        - rm -Rf *
+        - mv /tmp/.gitignore .
+        - mv /tmp/circle.yml .
+        - mv /tmp/site/* .
+        - git add --all .
+        - git commit -m "current documentation"
+        - git push origin gh-pages
 
