@@ -254,7 +254,7 @@
                 <configuration>
                     <encoding>${file.encoding}</encoding>
                     <extension>true</extension>
-                    <packageName>environment.dataimport</packageName>
+                    <packageName>environment.dataimport.bind</packageName>
                 </configuration>
             </plugin>
 

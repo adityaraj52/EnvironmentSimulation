@@ -1,5 +1,6 @@
 package environment.dataimport;
 
+import environment.dataimport.bind.Osm;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.net.MalformedURLException;
