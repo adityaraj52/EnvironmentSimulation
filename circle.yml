@@ -48,20 +48,20 @@ test:
         - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
 
         # Documentation Build with Update to GH-Pages Branch
-        - git checkout master
-        - mv target/site /tmp
-        - git checkout gh-pages
-        - mv circle.yml /tmp
-        - mv .gitignore /tmp
-        - git checkout master
-        - git push origin :gh-pages
-        - git branch -D gh-pages
-        - git checkout --orphan gh-pages
-        - rm -Rf *
-        - mv /tmp/.gitignore .
-        - mv /tmp/circle.yml .
-        - mv /tmp/site/* .
-        - git add --all .
-        - git commit -m "current documentation"
-        - git push origin gh-pages
+        #- git checkout master
+        #- mv target/site /tmp
+        #- git checkout gh-pages
+        #- mv circle.yml /tmp
+        #- mv .gitignore /tmp
+        #- git checkout master
+        #- git push origin :gh-pages
+        #- git branch -D gh-pages
+        #- git checkout --orphan gh-pages
+        #- rm -Rf *
+        #- mv /tmp/.gitignore .
+        #- mv /tmp/circle.yml .
+        #- mv /tmp/site/* .
+        #- git add --all .
+        #- git commit -m "current documentation"
+        #- git push origin gh-pages
 
