@@ -1,3 +1,17 @@
+# allow / deny branches for building
+general:
+    branches:
+        only:
+            - master
+        ignore:
+            - developing
+            - /hotfix-.*/
+            - /release-.*/
+            - /support-.*/
+            - /dev-.*/
+            - /gh-.*/
+            - /binary-.*/
+
 ## Customize the test machine
 machine:
 
