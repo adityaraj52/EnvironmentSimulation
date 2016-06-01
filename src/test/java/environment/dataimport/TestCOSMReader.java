@@ -2,7 +2,6 @@ package environment.dataimport;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import environment.dataimport.bind.Osm;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
