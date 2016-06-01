@@ -11,11 +11,12 @@ import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
 /**
- * test for reader test
+ * test for OSM test
  */
 public final class TestCOSMReader
 {
@@ -76,7 +77,7 @@ public final class TestCOSMReader
                 .entrySet()
                 .parallelStream()
                 .collect(
-                    Collectors.toMap( i -> i.getKey(), i -> new HashSet<String>( i.getValue() ) )
+                    Collectors.toMap( Map.Entry::getKey, i -> new HashSet<>( i.getValue() ) )
                 )
         );
     }
