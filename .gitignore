@@ -1,9 +1,21 @@
 *.*
+
 !.gitignore
-!pom.xml
+!.travis.yml
 !circle.yml
-!*.md
+!pom.xml
 !*.java
+!*.md
+!*.xsd
+!*.properties
+
+!src/site/*.doxyfile
+!src/site/*.htm*
+!src/site/*.css
+!src/site/*.xml
+
+!src/analysis/**/*.xml
+!src/analysis/**/*.txt
+!src/analysis/**/*.md
 
 target/**
-

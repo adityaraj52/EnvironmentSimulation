@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs = "http://www.w3.org/2001/XMLSchema" elementFormDefault = "qualified">
+    <xs:element name = "osm">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref = "bounds" />
+                <xs:element maxOccurs = "unbounded" ref = "node" />
+                <xs:element maxOccurs = "unbounded" ref = "way" />
+                <xs:element maxOccurs = "unbounded" ref = "relation" />
+            </xs:sequence>
+            <xs:attribute name = "attribution" use = "required" type = "xs:anyURI" />
+            <xs:attribute name = "copyright" use = "required" />
+            <xs:attribute name = "generator" use = "required" />
+            <xs:attribute name = "license" use = "required" type = "xs:anyURI" />
+            <xs:attribute name = "version" use = "required" type = "xs:decimal" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name = "bounds">
+        <xs:complexType>
+            <xs:attribute name = "maxlat" use = "required" type = "xs:decimal" />
+            <xs:attribute name = "maxlon" use = "required" type = "xs:decimal" />
+            <xs:attribute name = "minlat" use = "required" type = "xs:decimal" />
+            <xs:attribute name = "minlon" use = "required" type = "xs:decimal" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name = "node">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs = "0" maxOccurs = "unbounded" ref = "tag" />
+            </xs:sequence>
+            <xs:attribute name = "changeset" use = "required" type = "xs:integer" />
+            <xs:attribute name = "id" use = "required" type = "xs:integer" />
+            <xs:attribute name = "lat" use = "required" type = "xs:decimal" />
+            <xs:attribute name = "lon" use = "required" type = "xs:decimal" />
+            <xs:attribute name = "timestamp" use = "required" type = "xs:dateTime" />
+            <xs:attribute name = "uid" use = "required" type = "xs:integer" />
+            <xs:attribute name = "user" use = "required" />
+            <xs:attribute name = "version" use = "required" type = "xs:integer" />
+            <xs:attribute name = "visible" use = "required" type = "xs:boolean" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name = "way">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs = "unbounded" ref = "nd" />
+                <xs:element minOccurs = "0" maxOccurs = "unbounded" ref = "tag" />
+            </xs:sequence>
+            <xs:attribute name = "changeset" use = "required" type = "xs:integer" />
+            <xs:attribute name = "id" use = "required" type = "xs:integer" />
+            <xs:attribute name = "timestamp" use = "required" type = "xs:dateTime" />
+            <xs:attribute name = "uid" use = "required" type = "xs:integer" />
+            <xs:attribute name = "user" use = "required" />
+            <xs:attribute name = "version" use = "required" type = "xs:integer" />
+            <xs:attribute name = "visible" use = "required" type = "xs:boolean" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name = "nd">
+        <xs:complexType>
+            <xs:attribute name = "ref" use = "required" type = "xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name = "relation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs = "unbounded" ref = "member" />
+                <xs:element maxOccurs = "unbounded" ref = "tag" />
+            </xs:sequence>
+            <xs:attribute name = "changeset" use = "required" type = "xs:integer" />
+            <xs:attribute name = "id" use = "required" type = "xs:integer" />
+            <xs:attribute name = "timestamp" use = "required" type = "xs:dateTime" />
+            <xs:attribute name = "uid" use = "required" type = "xs:integer" />
+            <xs:attribute name = "user" use = "required" />
+            <xs:attribute name = "version" use = "required" type = "xs:integer" />
+            <xs:attribute name = "visible" use = "required" type = "xs:boolean" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name = "member">
+        <xs:complexType>
+            <xs:attribute name = "ref" use = "required" type = "xs:integer" />
+            <xs:attribute name = "role" use = "required" type = "xs:anyURI" />
+            <xs:attribute name = "type" use = "required" type = "xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name = "tag">
+        <xs:complexType>
+            <xs:attribute name = "k" use = "required" type = "xs:NMTOKEN" />
+            <xs:attribute name = "v" use = "required" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
