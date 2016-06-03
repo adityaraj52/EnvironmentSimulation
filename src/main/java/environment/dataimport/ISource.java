@@ -10,8 +10,9 @@ public interface ISource<T>
 {
 
     /**
-     * returns the unmarchalling class
-     * @return unmarchalling class type
+     * returns the unmarshalling class
+     *
+     * @return unmarshalling class type
      */
     Class<?> getUnmarshallingClass();
 

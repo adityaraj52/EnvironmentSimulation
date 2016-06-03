@@ -46,8 +46,11 @@ public final class COpenStreetMap implements ISource<Osm>
      * @param p_lowerrightlatitude lower-right latitude
      * @param p_lowerrightlongitude lower-right longitude
      * @throws MalformedURLException on URL errors
+     *
      */
-    public COpenStreetMap( final double p_upperleftlatitude, final double p_upperleftlongitude, final double p_lowerrightlatitude, final double p_lowerrightlongitude  )
+    public COpenStreetMap( final double p_upperleftlatitude, final double p_upperleftlongitude, final double p_lowerrightlatitude,
+                           final double p_lowerrightlongitude
+    )
     throws MalformedURLException
     {
         m_url = new URL(
@@ -60,7 +63,6 @@ public final class COpenStreetMap implements ISource<Osm>
             )
         );
     }
-
 
     @Override
     public final Class<?> getUnmarshallingClass()

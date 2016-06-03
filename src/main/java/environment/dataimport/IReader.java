@@ -6,7 +6,7 @@ package environment.dataimport;
 public interface IReader<T>
 {
     /**
-     * returns the readed data
+     * returns the read data
      *
      * @return data object
      */

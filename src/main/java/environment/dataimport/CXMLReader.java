@@ -4,9 +4,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 
-
 /**
  * reader for any XSD defined structure
+ *
  * @tparam T data type
  */
 public final class CXMLReader<T> implements IReader<T>
@@ -23,6 +23,7 @@ public final class CXMLReader<T> implements IReader<T>
      * @throws IOException on IO errors
      * @throws JAXBException on XML errors
      */
+
     @SuppressWarnings( "unchecked" )
     CXMLReader( final ISource<T> p_source ) throws IOException, JAXBException
     {
