@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openstreetmap.osmosis.tagfilter.v0_6.TagFilter;
 
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -47,6 +48,12 @@ public final class TestCOSMReader
     public void testOSMRead() throws IOException, JAXBException
     {
         Assume.assumeNotNull( m_source );
+
+        Osm x = new Osm();
+        x.setVersion( 123 );
+        x.setCopyright( "hello" );
+        JAXBContext.newInstance( Osm.class ).createMarshaller().marshal( x, new File( "x.xml" ) );
+
 
         final IReader<Osm> l_osm = new CXMLReader<>( m_source );
         System.out.println( l_osm.get().getVersion() );

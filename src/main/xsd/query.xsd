@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
+
+
+    <xs:attributeGroup name="gps">
+        <xs:annotation>
+            <xs:documentation>attribute definition for GPS data</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="latitude" use="required">
+            <xs:annotation>
+                <xs:documentation>latitude value (positive values = east, negativ values =
+                    west)</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:double"/>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="longitude" use="required">
+            <xs:annotation>
+                <xs:documentation>longitude value (positive values = north, negative values =
+                    south)</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:double"/>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:element name="query">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="filter">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="node">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="boundingbox">
+                                            <xs:complexType>
+
+                                                <xs:sequence>
+                                                  <xs:element name="lefttop">
+                                                  <xs:complexType>
+                                                  <xs:attributeGroup ref="gps"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="bottomright">
+                                                  <xs:complexType>
+                                                  <xs:attributeGroup ref="gps"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="tag">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="key">
+                                                  <xs:complexType>
+                                                  <xs:attribute name="value"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="expression">
+                                                  <xs:complexType>
+                                                  <xs:choice>
+                                                  <xs:element name="equalsTo" type="xs:string"/>
+                                                  <xs:group ref="Elements"/>
+                                                  </xs:choice>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element name="value"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="newElement"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ways"/>
+                            <xs:element name="relations"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:group name="expressions_type">
+        <xs:choice>
+            <xs:element fixed="=" name="equalsTo" type="xs:"/>
+        </xs:choice>
+    </xs:group>
+
+    <xs:attribute name="code">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="[A-Z][A-Z]"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+    <xs:complexType name="someComplexType">
+        <xs:attribute ref="code"/>
+    </xs:complexType>
+
+    <xs:simpleType name="equal">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:attributeGroup name="newAttributeGroup"/>
+    <xs:simpleType name="newSimpleType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:attribute name="newAttribute">
+        <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+    </xs:attribute>
+</xs:schema>
