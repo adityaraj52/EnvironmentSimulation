@@ -32,86 +32,94 @@
                 <xs:element name="filter">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="node">
+                            <xs:element name="tag" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:all>
-                                        <xs:element name="boundingbox">
-                                            <xs:complexType>
-
-                                                <xs:sequence>
-                                                  <xs:element name="lefttop">
-                                                  <xs:complexType>
-                                                  <xs:attributeGroup ref="gps"/>
-                                                  </xs:complexType>
-                                                  </xs:element>
-                                                  <xs:element name="bottomright">
-                                                  <xs:complexType>
-                                                  <xs:attributeGroup ref="gps"/>
-                                                  </xs:complexType>
-                                                  </xs:element>
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:element name="tag">
-                                            <xs:complexType>
-                                                <xs:sequence>
-                                                  <xs:element name="key">
-                                                  <xs:complexType>
-                                                  <xs:attribute name="value"/>
-                                                  </xs:complexType>
-                                                  </xs:element>
-                                                  <xs:element name="expression">
-                                                  <xs:complexType>
-                                                  <xs:choice>
-                                                  <xs:element name="equalsTo" type="xs:string"/>
-                                                  <xs:group ref="Elements"/>
-                                                  </xs:choice>
-                                                  </xs:complexType>
-                                                  </xs:element>
-                                                  <xs:element name="value"/>
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:element name="newElement"/>
-                                    </xs:all>
+                                    <xs:sequence>
+                                        <xs:element name="key" type="keys"> </xs:element>
+                                        <xs:element name="operators"> </xs:element>
+                                        <xs:element name="value" default="*"/>
+                                    </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="ways"/>
-                            <xs:element name="relations"/>
+                            <xs:element name="polynomial" type="polynomial"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
             </xs:all>
         </xs:complexType>
     </xs:element>
-    <xs:group name="expressions_type">
+
+
+
+
+    <xs:simpleType name="operators" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="equals"/>
+            <xs:enumeration value="not equals"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="keys" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="highway"/>
+            <xs:enumeration value="tourism"/>
+            <xs:enumeration value="building"/>
+            <xs:enumeration value="shop"/>
+            <xs:enumeration value="waterways"/>
+            <xs:enumeration value="railways"/>
+            <xs:enumeration value="junction"/>
+            <xs:enumeration value="junction"/>
+        </xs:restriction>
+
+    </xs:simpleType>
+    <xs:complexType name="polynomial">
         <xs:choice>
-            <xs:element fixed="=" name="equalsTo" type="xs:"/>
+            <xs:element name="rectangle">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="lefttop">
+                            <xs:complexType>
+                                <xs:attributeGroup ref="gps"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="bottomright">
+                            <xs:complexType>
+                                <xs:attributeGroup ref="gps"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="circle">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="centre">
+                            <xs:complexType>
+                                <xs:attributeGroup ref="gps"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="radius">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:double">
+                                    <xs:minInclusive value="0"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="list">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="unbounded" minOccurs="3">
+                        <xs:element name="position">
+                            <xs:complexType>
+                                <xs:attributeGroup ref="gps"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:choice>
-    </xs:group>
-
-    <xs:attribute name="code">
-        <xs:simpleType>
-            <xs:restriction base="xs:string">
-                <xs:pattern value="[A-Z][A-Z]"/>
-            </xs:restriction>
-        </xs:simpleType>
-    </xs:attribute>
-
-    <xs:complexType name="someComplexType">
-        <xs:attribute ref="code"/>
     </xs:complexType>
-
-    <xs:simpleType name="equal">
-        <xs:restriction base="xs:string"/>
-    </xs:simpleType>
-    <xs:attributeGroup name="newAttributeGroup"/>
-    <xs:simpleType name="newSimpleType">
-        <xs:restriction base="xs:string"/>
-    </xs:simpleType>
-    <xs:attribute name="newAttribute">
-        <xs:simpleType>
-            <xs:restriction base="xs:string"/>
-        </xs:simpleType>
-    </xs:attribute>
 </xs:schema>
