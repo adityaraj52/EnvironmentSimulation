@@ -32,16 +32,8 @@
                 <xs:element name="filter">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="tag" maxOccurs="unbounded">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="key" type="keys"> </xs:element>
-                                        <xs:element name="operators"> </xs:element>
-                                        <xs:element name="value" default="*"/>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
-                            <xs:element name="polynomial" type="polynomial"/>
+                            <xs:element name="tag" maxOccurs="unbounded" type="tags"> </xs:element>
+                            <xs:element name="polynomial" type="polynomials"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -73,7 +65,7 @@
         </xs:restriction>
 
     </xs:simpleType>
-    <xs:complexType name="polynomial">
+    <xs:complexType name="polynomials">
         <xs:choice>
             <xs:element name="rectangle">
                 <xs:complexType>
@@ -122,4 +114,12 @@
             </xs:element>
         </xs:choice>
     </xs:complexType>
+    <xs:complexType name="tags">
+        <xs:sequence>
+            <xs:element name="key" type="keys"> </xs:element>
+            <xs:element name="operators"> </xs:element>
+            <xs:element name="value" default="*"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="multipletags"/>
 </xs:schema>
