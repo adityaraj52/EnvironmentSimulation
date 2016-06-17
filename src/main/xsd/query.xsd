@@ -3,37 +3,16 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
 
 
-    <xs:attributeGroup name="gps">
-        <xs:annotation>
-            <xs:documentation>attribute definition for GPS data</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="latitude" use="required">
-            <xs:annotation>
-                <xs:documentation>latitude value (positive values = east, negativ values =
-                    west)</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-                <xs:restriction base="xs:double"/>
-            </xs:simpleType>
-        </xs:attribute>
-        <xs:attribute name="longitude" use="required">
-            <xs:annotation>
-                <xs:documentation>longitude value (positive values = north, negative values =
-                    south)</xs:documentation>
-            </xs:annotation>
-            <xs:simpleType>
-                <xs:restriction base="xs:double"/>
-            </xs:simpleType>
-        </xs:attribute>
-    </xs:attributeGroup>
     <xs:element name="query">
         <xs:complexType>
             <xs:all>
                 <xs:element name="filter">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="tag" maxOccurs="unbounded" type="tags"> </xs:element>
                             <xs:element name="polynomial" type="polynomials"/>
+                            <xs:element name="tag" maxOccurs="unbounded" type="tags" minOccurs="0"> </xs:element>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="multiple_tags"
+                                type="tag_difference"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -52,6 +31,11 @@
     </xs:simpleType>
 
 
+    <xs:simpleType name="boolean_operator">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="||"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:simpleType name="keys" final="restriction">
         <xs:restriction base="xs:string">
             <xs:enumeration value="highway"/>
@@ -65,6 +49,8 @@
         </xs:restriction>
 
     </xs:simpleType>
+
+
     <xs:complexType name="polynomials">
         <xs:choice>
             <xs:element name="rectangle">
@@ -83,6 +69,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+
             <xs:element name="circle">
                 <xs:complexType>
                     <xs:sequence>
@@ -101,6 +88,7 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+
             <xs:element name="list">
                 <xs:complexType>
                     <xs:sequence maxOccurs="unbounded" minOccurs="3">
@@ -114,12 +102,61 @@
             </xs:element>
         </xs:choice>
     </xs:complexType>
+
     <xs:complexType name="tags">
         <xs:sequence>
             <xs:element name="key" type="keys"> </xs:element>
-            <xs:element name="operators"> </xs:element>
+            <xs:element name="operators" type="operators"> </xs:element>
             <xs:element name="value" default="*"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="multipletags"/>
+
+    <xs:complexType name="tagsequence">
+        <xs:sequence>
+            <xs:element name="tagsequencetype" type="tags"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tag_difference">
+        <xs:sequence>
+            <xs:element name="tag1" type="tags"/>
+            <xs:element name="boolean_operator" type="boolean_operator"> </xs:element>
+            <xs:element name="tag2" type="tags"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:attributeGroup name="gps">
+        <xs:annotation>
+            <xs:documentation>attribute definition for GPS data</xs:documentation>
+        </xs:annotation>
+
+
+        <xs:attribute name="latitude" use="required">
+            <xs:annotation>
+                <xs:documentation>latitude value (positive values = east, negativ values =
+                    west)</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:double">
+                    <xs:minInclusive value="-90"/>
+                    <xs:maxInclusive value="90"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+
+        <xs:attribute name="longitude" use="required">
+            <xs:annotation>
+                <xs:documentation>longitude value (positive values = north, negative values =
+                    south)</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:double">
+                    <xs:minInclusive value="-180"/>
+                    <xs:maxInclusive value="180"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+
+    </xs:attributeGroup>
 </xs:schema>
