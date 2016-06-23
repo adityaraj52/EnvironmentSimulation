@@ -1,42 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
-
+    <!-- http://stackoverflow.com/questions/23110212/transforming-one-jaxb-object-to-another-using-xslt -->
 
     <xs:element name="query">
+        <xs:annotation>
+            <xs:documentation>filter structure</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
-            <xs:all>
-                <xs:element name="filter">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="polynomial" type="polynomials"/>
-                            <xs:element name="tag" maxOccurs="unbounded" type="tags" minOccurs="0"> </xs:element>
-                            <xs:element maxOccurs="unbounded" minOccurs="0" name="multiple_tags"
-                                type="tag_difference"/>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-            </xs:all>
+            <xs:sequence>
+                <xs:element name="filter" maxOccurs="unbounded" type="ifilter_expression"/>
+                <xs:element name="polynomial" type="ipolynomial"/>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
 
 
 
 
-    <xs:simpleType name="operators" final="restriction">
+    <xs:complexType name="ifilter_expression" abstract="true" final="#all">
+        <xs:annotation>
+            <xs:documentation>full filter expression</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="item" type="ifilter_item"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+
+
+    <xs:complexType name="ifilter_item" abstract="true" final="#all">
+        <xs:annotation>
+            <xs:documentation>defines a single filter item</xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="key" type="iosmkey"> </xs:element>
+            <xs:element name="operator" default="equals" type="ioperator_relational"> </xs:element>
+            <xs:element name="value" default="*"/>
+        </xs:all>
+        <xs:attribute name="operator" type="ioperator_boolean"> </xs:attribute>
+    </xs:complexType>
+
+
+
+
+    <xs:simpleType name="ioperator_relational" final="restriction">
+        <xs:annotation>
+            <xs:documentation>relational operator for connecting key and value of a filter</xs:documentation>
+        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="equals"/>
             <xs:enumeration value="not equals"/>
         </xs:restriction>
     </xs:simpleType>
 
-
-    <xs:simpleType name="boolean_operator">
+    <xs:simpleType name="ioperator_boolean" final="restriction">
+        <xs:annotation>
+            <xs:documentation>boolean operator for connection different filters</xs:documentation>
+        </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:enumeration value="||"/>
+            <xs:enumeration value="and"/>
+            <xs:enumeration value="or"/>
+            <xs:enumeration value="xor"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="keys" final="restriction">
+
+
+    <xs:simpleType name="iosmkey" final="restriction">
+        <xs:annotation>
+            <xs:documentation>filter elements for OSM structures</xs:documentation>
+        </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="highway"/>
             <xs:enumeration value="tourism"/>
@@ -47,13 +81,20 @@
             <xs:enumeration value="junction"/>
             <xs:enumeration value="junction"/>
         </xs:restriction>
-
     </xs:simpleType>
 
 
-    <xs:complexType name="polynomials">
+
+
+    <xs:complexType name="ipolynomial" abstract="true" final="#all">
+        <xs:annotation>
+            <xs:documentation>polynomial defines the border structure for reading data</xs:documentation>
+        </xs:annotation>
         <xs:choice>
             <xs:element name="rectangle">
+                <xs:annotation>
+                    <xs:documentation>bounding box that is decribed by the upper-left and lower-right corner</xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="lefttop">
@@ -69,8 +110,10 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-
             <xs:element name="circle">
+                <xs:annotation>
+                    <xs:documentation>defines a circle around a coordinate in meter</xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="centre">
@@ -88,8 +131,10 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-
             <xs:element name="list">
+                <xs:annotation>
+                    <xs:documentation>defines a list of coordinates to describe a closed polynomial</xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence maxOccurs="unbounded" minOccurs="3">
                         <xs:element name="position">
@@ -103,60 +148,31 @@
         </xs:choice>
     </xs:complexType>
 
-    <xs:complexType name="tags">
-        <xs:sequence>
-            <xs:element name="key" type="keys"> </xs:element>
-            <xs:element name="operators" type="operators"> </xs:element>
-            <xs:element name="value" default="*"/>
-        </xs:sequence>
-    </xs:complexType>
 
-    <xs:complexType name="tagsequence">
-        <xs:sequence>
-            <xs:element name="tagsequencetype" type="tags"/>
-        </xs:sequence>
-    </xs:complexType>
 
-    <xs:complexType name="tag_difference">
-        <xs:sequence>
-            <xs:element name="tag1" type="tags"/>
-            <xs:element name="boolean_operator" type="boolean_operator"> </xs:element>
-            <xs:element name="tag2" type="tags"/>
-        </xs:sequence>
-    </xs:complexType>
+
     <xs:attributeGroup name="gps">
         <xs:annotation>
             <xs:documentation>attribute definition for GPS data</xs:documentation>
         </xs:annotation>
-
-
         <xs:attribute name="latitude" use="required">
             <xs:annotation>
                 <xs:documentation>latitude value (positive values = east, negativ values =
                     west)</xs:documentation>
             </xs:annotation>
             <xs:simpleType>
-                <xs:restriction base="xs:double">
-                    <xs:minInclusive value="-90"/>
-                    <xs:maxInclusive value="90"/>
-                </xs:restriction>
+                <xs:restriction base="xs:double"/>
             </xs:simpleType>
         </xs:attribute>
-
-
         <xs:attribute name="longitude" use="required">
             <xs:annotation>
                 <xs:documentation>longitude value (positive values = north, negative values =
                     south)</xs:documentation>
             </xs:annotation>
             <xs:simpleType>
-                <xs:restriction base="xs:double">
-                    <xs:minInclusive value="-180"/>
-                    <xs:maxInclusive value="180"/>
-                </xs:restriction>
+                <xs:restriction base="xs:double"/>
             </xs:simpleType>
         </xs:attribute>
-
-
     </xs:attributeGroup>
+
 </xs:schema>
