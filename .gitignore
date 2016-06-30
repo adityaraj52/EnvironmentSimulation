@@ -13,7 +13,7 @@
 !src/site/*.htm*
 !src/site/*.css
 !src/site/*.xml
-!src/site/*.xsl
+
 !src/analysis/**/*.xml
 !src/analysis/**/*.txt
 !src/analysis/**/*.md
