@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="query.xsl"?>
+
+<query xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/home/adityaraj/Documents/EnvironmentSimulation/src/main/xsd/query.xsd">
+    <filter>
+        <item>
+            <key>highway</key>
+            <operator>equals</operator>
+            <value> </value>
+        </item>
+    </filter>
+    <filter>
+        <item>
+            <key>highway</key>
+            <operator>equals</operator>
+            <value> </value>
+        </item>
+    </filter>
+    <polynomial>
+        <circle>
+            <centre latitude="0" longitude="0"/>
+            <radius>50</radius>
+        </circle>
+    </polynomial>
+</query>

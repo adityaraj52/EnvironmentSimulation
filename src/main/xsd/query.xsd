@@ -18,7 +18,7 @@
 
 
 
-    <xs:complexType name="ifilter_expression" abstract="true" final="#all">
+    <xs:complexType name="ifilter_expression" final="#all">
         <xs:annotation>
             <xs:documentation>full filter expression</xs:documentation>
         </xs:annotation>
@@ -30,7 +30,7 @@
 
 
 
-    <xs:complexType name="ifilter_item" abstract="true" final="#all">
+    <xs:complexType name="ifilter_item" final="#all">
         <xs:annotation>
             <xs:documentation>defines a single filter item</xs:documentation>
         </xs:annotation>
@@ -47,7 +47,8 @@
 
     <xs:simpleType name="ioperator_relational" final="restriction">
         <xs:annotation>
-            <xs:documentation>relational operator for connecting key and value of a filter</xs:documentation>
+            <xs:documentation>relational operator for connecting key and value of a
+                filter</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="equals"/>
@@ -86,14 +87,16 @@
 
 
 
-    <xs:complexType name="ipolynomial" abstract="true" final="#all">
+    <xs:complexType name="ipolynomial" final="#all">
         <xs:annotation>
-            <xs:documentation>polynomial defines the border structure for reading data</xs:documentation>
+            <xs:documentation>polynomial defines the border structure for reading
+                data</xs:documentation>
         </xs:annotation>
         <xs:choice>
             <xs:element name="rectangle">
                 <xs:annotation>
-                    <xs:documentation>bounding box that is decribed by the upper-left and lower-right corner</xs:documentation>
+                    <xs:documentation>bounding box that is decribed by the upper-left and
+                        lower-right corner</xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
@@ -112,7 +115,8 @@
             </xs:element>
             <xs:element name="circle">
                 <xs:annotation>
-                    <xs:documentation>defines a circle around a coordinate in meter</xs:documentation>
+                    <xs:documentation>defines a circle around a coordinate in
+                        meter</xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
@@ -133,7 +137,8 @@
             </xs:element>
             <xs:element name="list">
                 <xs:annotation>
-                    <xs:documentation>defines a list of coordinates to describe a closed polynomial</xs:documentation>
+                    <xs:documentation>defines a list of coordinates to describe a closed
+                        polynomial</xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence maxOccurs="unbounded" minOccurs="3">
