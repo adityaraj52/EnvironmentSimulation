@@ -3,25 +3,25 @@
 
 <query xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="file:/home/adityaraj/Documents/EnvironmentSimulation/src/main/xsd/query.xsd">
-    <filter>
+    xsi:noNamespaceSchemaLocation="file:/home/adityaraj/Documents/EnvironmentSimulation/src/main/xsd/query.xsd">    <filter>
         <item>
             <key>highway</key>
             <operator>equals</operator>
-            <value> </value>
+            <value>none </value>
         </item>
     </filter>
     <filter>
         <item>
             <key>highway</key>
             <operator>equals</operator>
-            <value> </value>
+            <value>all </value>
         </item>
     </filter>
     <polynomial>
-        <circle>
-            <centre latitude="0" longitude="0"/>
-            <radius>50</radius>
-        </circle>
+        <list>
+            <position latitude="0 " longitude="0.5 "/>
+            <position latitude="1 " longitude="1.5 "/>
+            <position latitude="2 " longitude="2.5 "/>
+        </list>
     </polynomial>
 </query>
