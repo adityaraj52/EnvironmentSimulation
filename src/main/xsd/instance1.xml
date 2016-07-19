@@ -8,21 +8,21 @@
         <item>
             <key>highway</key>
             <operator>equals</operator>
-            <value>none </value>
+            <value>motorway</value>
         </item>
     </filter>
     <filter>
         <item>
             <key>highway</key>
             <operator>equals</operator>
-            <value>all </value>
+            <value>primary</value>
         </item>
     </filter>
     <polynomial>
         <list>
-            <position latitude="0 " longitude="0.5 "/>
-            <position latitude="1 " longitude="1.5 "/>
-            <position latitude="2 " longitude="2.5 "/>
+            <position latitude="0" longitude="0"/>
+            <position latitude="0" longitude="0"/>
+            <position latitude="0" longitude="0"/>
         </list>
     </polynomial>
 </query>
