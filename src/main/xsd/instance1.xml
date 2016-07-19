@@ -3,7 +3,7 @@
 
 <query xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="file:/home/adityaraj/Documents/EnvironmentSimulation/src/main/xsd/query.xsd">
+    xsi:noNamespaceSchemaLocation="query.xsd">
     <filter>
         <item>
             <key>highway</key>
