@@ -20,7 +20,7 @@
 
     <xs:complexType name="ifilter_expression" final="#all">
         <xs:annotation>
-            <xs:documentation>full filter expression</xs:documentation>
+            <xs:documentation>full_filter_expression</xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="item" type="ifilter_item"/>
@@ -32,7 +32,7 @@
 
     <xs:complexType name="ifilter_item" final="#all">
         <xs:annotation>
-            <xs:documentation>defines a single filter item</xs:documentation>
+            <xs:documentation>defines_a_single_filter_item</xs:documentation>
         </xs:annotation>
         <xs:all>
             <xs:element name="key" type="iosmkey"> </xs:element>
@@ -47,8 +47,7 @@
 
     <xs:simpleType name="ioperator_relational" final="restriction">
         <xs:annotation>
-            <xs:documentation>relational operator for connecting key and value of a
-                filter</xs:documentation>
+            <xs:documentation>relational_operator_for_connecting_key_and_value_of_a_filter</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="equals"/>
@@ -58,7 +57,7 @@
 
     <xs:simpleType name="ioperator_boolean" final="restriction">
         <xs:annotation>
-            <xs:documentation>boolean operator for connection different filters</xs:documentation>
+            <xs:documentation>boolean_operator for connection different filters</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="and"/>

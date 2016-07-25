@@ -49,10 +49,10 @@ public final class TestCOSMReader
     {
         Assume.assumeNotNull( m_source );
 
-        Osm x = new Osm();
-        x.setVersion( 123 );
-        x.setCopyright( "hello" );
-        JAXBContext.newInstance( Osm.class ).createMarshaller().marshal( x, new File( "x.xml" ) );
+        final Osm l_version = new Osm();
+        l_version.setVersion( 123 );
+        l_version.setCopyright( "hello" );
+        JAXBContext.newInstance( Osm.class ).createMarshaller().marshal( l_version, new File( "x.xml" ) );
 
 
         final IReader<Osm> l_osm = new CXMLReader<>( m_source );
