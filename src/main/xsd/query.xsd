@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
     <!-- http://stackoverflow.com/questions/23110212/transforming-one-jaxb-object-to-another-using-xslt -->
 
     <xs:element name="query">
@@ -36,7 +36,7 @@
         </xs:annotation>
         <xs:all>
             <xs:element name="key" type="iosmkey"> </xs:element>
-            <xs:element name="operator" default="equals" type="ioperator_relational"> </xs:element>
+            <xs:element name="r_operator" default="equals" type="ioperator_relational"> </xs:element>
             <xs:element name="value" default="*"/>
         </xs:all>
         <xs:attribute name="operator" type="ioperator_boolean"> </xs:attribute>

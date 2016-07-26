@@ -255,8 +255,24 @@
                     <encoding>${file.encoding}</encoding>
                     <extension>true</extension>
                     <packageName>environment.dataimport</packageName>
+
+                    <sources>
+                        <source>src/main</source>
+                    </sources>
+
+                    <xjcSourceExcludeFilters>
+                        <filter implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
+                            <patterns>
+                                <pattern>\.java</pattern>
+                                <pattern>\.xml</pattern>
+                                <pattern>\.xsl</pattern>
+                            </patterns>
+                        </filter>
+                    </xjcSourceExcludeFilters>
+
                 </configuration>
             </plugin>
+
 
             <!-- on the command "mvn clean" we clean-up some additional files -->
             <plugin>
