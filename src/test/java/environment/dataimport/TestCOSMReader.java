@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openstreetmap.osmosis.tagfilter.v0_6.TagFilter;
 
-import javax.xml.bind.JAXBContext;
+//import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -50,9 +50,9 @@ public final class TestCOSMReader
         Assume.assumeNotNull( m_source );
 
         final Osm l_version = new Osm();
-        l_version.setVersion( 123 );
+        //l_version.setVersion( 123 );
         l_version.setCopyright( "hello" );
-        JAXBContext.newInstance( Osm.class ).createMarshaller().marshal( l_version, new File( "x.xml" ) );
+        //JAXBContext.newInstance( Osm.class ).createMarshaller().marshal( l_version, new File( "src/main/instance1.xml" ) );
 
 
         final IReader<Osm> l_osm = new CXMLReader<>( m_source );
@@ -77,15 +77,15 @@ public final class TestCOSMReader
         l_tagfilter.put( "tag-filter", "residential" );
 
         final TagFilter l_filter = new TagFilter(
-            "accept-way",
-            l_tagfilter.keySet(),
-            l_tagfilter
-                .asMap()
-                .entrySet()
-                .parallelStream()
-                .collect(
-                    Collectors.toMap( Map.Entry::getKey, i -> new HashSet<>( i.getValue() ) )
-                )
+                "accept-way",
+                l_tagfilter.keySet(),
+                l_tagfilter
+                        .asMap()
+                        .entrySet()
+                        .parallelStream()
+                        .collect(
+                                Collectors.toMap( Map.Entry::getKey, i -> new HashSet<>( i.getValue() ) )
+                        )
         );
     }
 
