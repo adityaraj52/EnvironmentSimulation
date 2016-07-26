@@ -85,7 +85,7 @@ public final class COpenStreetMap implements ISource<Osm>
     @Override
     public final boolean equals( final Object p_object )
     {
-        return m_url.equals( p_object );
+        return ( p_object != null ) && ( p_object instanceof ISource<?> ) && ( m_url.equals( p_object ) );
     }
 
     @Override

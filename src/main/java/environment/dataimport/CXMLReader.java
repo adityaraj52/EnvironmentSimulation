@@ -46,7 +46,7 @@ public final class CXMLReader<T> implements IReader<T>
     @Override
     public final boolean equals( final Object p_object )
     {
-        return m_data.equals( p_object );
+        return ( p_object != null ) && ( p_object instanceof IReader<?> ) && ( m_data.equals( p_object ) );
     }
 
     @Override
