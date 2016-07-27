@@ -136,7 +136,7 @@
     <!-- defines the build settings -->
     <build>
         <!-- default goal is set to package and checking dependency & plugin updates -->
-        <defaultGoal>package versions:display-dependency-updates versions:display-plugin-updates</defaultGoal>
+        <defaultGoal>clean package versions:display-dependency-updates versions:display-plugin-updates</defaultGoal>
 
         <!-- include resource directory with replacing configuration variables -->
         <resources>
@@ -257,7 +257,8 @@
                     <packageName>environment.dataimport</packageName>
 
                     <sources>
-                        <source>src/main</source>
+                        <!-- <source>src/main/xsd/query.xsd</source> -->
+                        <source>src/main/xsd/osp.xsd</source>
                     </sources>
 
                     <xjcSourceExcludeFilters>
