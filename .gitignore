@@ -9,6 +9,7 @@
 !*.xsd
 !*.xsl
 !*.xml
+!*.osm
 !*.properties
 
 !src/site/*.doxyfile
