@@ -39,16 +39,8 @@ public class CXmlValidator implements IXmlValidator
         final Schema l_schema = SchemaFactory.newInstance( XMLConstants.W3C_XML_SCHEMA_NS_URI ).newSchema( new StreamSource( p_xsd ) );
 
         // validate the DOM tree
-            // create a Validator instance, which can be used to validate an instance document
-        try
-        {
-            l_schema.newValidator().validate( new DOMSource( l_document ) );
-            System.out.println( "Instance is Valid" );
-        }
-        catch ( final SAXException l_exception )
-        {
-            System.out.println( "Got SAXException" + l_exception.getMessage() + l_exception.getStackTrace() );
-        }
+        // create a Validator instance, which can be used to validate an instance document
+        l_schema.newValidator().validate( new DOMSource( l_document ) );
     }
 
     public void validateStream( final File p_xsd, final File p_xml ) throws Exception
