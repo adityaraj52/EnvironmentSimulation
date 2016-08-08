@@ -27,5 +27,9 @@ public class TestCXMLValidator
         m_xmlValidator.validateFile( new File( "src/main/xsd/query.xsd" ), new File( "src/main/xsd/instance1.xml" ) );
     }
 
+    public void testQuery()
+    {
+
+    }
 
 }

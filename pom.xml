@@ -257,7 +257,7 @@
                     <packageName>environment.dataimport</packageName>
 
                     <sources>
-                        <!-- <source>src/main/xsd/query.xsd</source> -->
+                        <source>src/main/xsd/query.xsd</source>
                         <source>src/main/xsd/osp.xsd</source>
                     </sources>
 
