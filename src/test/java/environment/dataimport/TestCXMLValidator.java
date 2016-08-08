@@ -11,9 +11,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 
 
@@ -31,11 +28,13 @@ public class TestCXMLValidator
         m_xmlValidator = new CXmlValidator();
     }
 
+    /*
     @Test
     public void validate() throws Exception
     {
         m_xmlValidator.validateFile( new File( "src/main/xsd/query.xsd" ), new File( "src/main/xsd/instance1.xml" ) );
     }
+    */
 
     /**
      * test for XSLT transformation' using JAXB
@@ -45,40 +44,32 @@ public class TestCXMLValidator
     @Test
     public void buildQuery() throws Exception
     {
-        // List of Filter expressions
-        final List<IfilterExpression> l_filter = new ArrayList<>();
 
-        l_filter.add( new IfilterExpression() {
-            {
-                item.setKey( Iosmkey.HIGHWAY );
-                item.setROperator( IoperatorRelational.EQUALS );
-                item.setValue( "bus_stop" );
-            }
-        } );
+        final environment.dataimport.Query l_queryString = new environment.dataimport.Query();
+        final Ipolynomial l_tempIpolynomial = new Ipolynomial();
 
-        final environment.dataimport.Query l_queryString = new environment.dataimport.Query() {
-            {
-                setPolynomial( new Ipolynomial() {
-                    {
-                        rectangle.setBottomright( new Ipolynomial.Rectangle.Bottomright() {
-                            {
-                                setLatitude( 11 );
-                                setLongitude( 11 );
-                            }
-                        } );
+        final Ipolynomial.Rectangle l_rectangle = new Ipolynomial.Rectangle();
+        final Ipolynomial.Rectangle.Bottomright l_bottomRight = new Ipolynomial.Rectangle.Bottomright();
+        l_bottomRight.setLatitude( 11 );
+        l_bottomRight.setLongitude( 11 );
 
-                        rectangle.setLefttop( new Ipolynomial.Rectangle.Lefttop()
-                        {
-                            {
-                                setLatitude( 11 );
-                                setLongitude( 11 );
-                            }
-                        } );
-                    }
-                } );
-                filter = l_filter;
-            }
-        };
+        final Ipolynomial.Rectangle.Lefttop l_leftTop = new Ipolynomial.Rectangle.Lefttop();
+        l_leftTop.setLatitude( 11 );
+        l_leftTop.setLongitude( 11 );
+
+        l_rectangle.setBottomright( l_bottomRight );
+        l_rectangle.setLefttop( l_leftTop );
+
+        l_tempIpolynomial.setRectangle( l_rectangle );
+        l_queryString.setPolynomial( l_tempIpolynomial );
+
+        final IfilterExpression l_filters = new IfilterExpression();
+        final IfilterItem l_item = new IfilterItem();
+        l_item.setKey( Iosmkey.HIGHWAY );
+        l_item.setROperator( IoperatorRelational.EQUALS );
+        l_item.setValue( "bus_stop" );
+
+        l_filters.setItem( l_item );
 
         System.out.println( " printing filters " );
         System.out.println( l_queryString.getFilter() );
