@@ -1,17 +1,16 @@
 package environment.dataimport;
 
-import org.junit.Before;
 import org.junit.Test;
-import validator.CXmlValidator;
 import validator.IXmlValidator;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.util.JAXBSource;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
+import java.io.StringWriter;
 
 
 /**
@@ -22,19 +21,25 @@ public class TestCXMLValidator
 
     private IXmlValidator m_xmlValidator;
 
-    @Before
-    public void before()
+    /**
+     * Set Filters for OSM File
+     *
+     * @param p_queryString a parameter for query string
+     * @param p_key a parameter for tag key
+     * @param p_operator a parameter for query string
+     * @param p_value a parameter for query string
+     *
+     **/
+    public void setFilters( final environment.dataimport.Query p_queryString, final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value )
     {
-        m_xmlValidator = new CXmlValidator();
+        final IfilterExpression l_filters = new IfilterExpression();
+        final IfilterItem l_item = new IfilterItem();
+        l_item.setKey( p_key );
+        l_item.setROperator( p_operator );
+        l_item.setValue( p_value );
+        l_filters.setItem( l_item );
+        p_queryString.getFilter().add( l_filters );
     }
-
-    /*
-    @Test
-    public void validate() throws Exception
-    {
-        m_xmlValidator.validateFile( new File( "src/main/xsd/query.xsd" ), new File( "src/main/xsd/instance1.xml" ) );
-    }
-    */
 
     /**
      * test for XSLT transformation' using JAXB
@@ -73,39 +78,19 @@ public class TestCXMLValidator
         //Add the polynomial to querystring
         l_queryString.setPolynomial( l_tempIpolynomial );
 
-        //Now adding filter expressions
-
-        //Specify First filter
-        final IfilterExpression l_filters = new IfilterExpression();
-        final IfilterItem l_item = new IfilterItem();
-        l_item.setKey( Iosmkey.HIGHWAY );
-        l_item.setROperator( IoperatorRelational.EQUALS );
-        l_item.setValue( "bus_stop" );
-
-        //Specify second filter
-        final IfilterExpression l_filters1 = new IfilterExpression();
-        final IfilterItem l_item1 = new IfilterItem();
-        l_item1.setKey( Iosmkey.RAILWAYS );
-        l_item1.setROperator( IoperatorRelational.EQUALS );
-        l_item1.setValue( "*" );
-
-        //Set filters
-        l_filters.setItem( l_item );
-        l_filters1.setItem( l_item1 );
-
-        //Add filters to the query string
-        l_queryString.getFilter().add( l_filters );
-        l_queryString.getFilter().add( l_filters1 );
+        this.setFilters( l_queryString, Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "primary" );
+        this.setFilters( l_queryString, Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "bus_stop" );
 
         //Create Transformer
         final Transformer l_transformer = TransformerFactory.newInstance().newTransformer( new StreamSource( "src/main/xsd/query.xsl" ) );
+        l_transformer.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );
 
         // Source
         final JAXBSource l_source = new JAXBSource( JAXBContext.newInstance( environment.dataimport.Query.class ), l_queryString );
 
         // Transform
-        System.out.println( "\n\n" );
-        l_transformer.transform( l_source, new StreamResult( System.out ) );
-        System.out.println( "\n\n" );
+        final StringWriter l_sw = new StringWriter();
+        l_transformer.transform( l_source, new StreamResult( l_sw ) );
+        System.out.println(  "\n" + l_sw + "\n" );
     }
 }

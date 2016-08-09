@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
-
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    exclude-result-prefixes="xs">
 
     <!-- General templates for the follwoing name related Symbols -->
     <xsl:template name="comma">
@@ -195,9 +195,7 @@
                 <xsl:value-of select="'='"/>
             </xsl:otherwise>
 
-
         </xsl:choose>
-
 
     </xsl:template>
 
@@ -205,7 +203,5 @@
         <xsl:value-of select="."/>
         <xsl:call-template name="close_big_bracket"/>
     </xsl:template>
-
-
 
 </xsl:stylesheet>
