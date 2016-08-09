@@ -2,8 +2,6 @@ package environment.dataimport;
 
 import org.junit.Before;
 import org.junit.Test;
-import validator.IXmlValidator;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.util.JAXBSource;
 import javax.xml.transform.OutputKeys;
@@ -13,17 +11,12 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.StringWriter;
 
-
 /**
  * Created by adityaraj on 28/07/16.
  */
 public class TestCXMLValidator
 {
-
-    private IXmlValidator m_xmlValidator;
-
     private environment.dataimport.Query m_queryString;
-
 
     @Before
      public void before()
