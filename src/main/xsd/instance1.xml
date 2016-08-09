@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="query.xsl"?>
 
 <query xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="query.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="query.xsd">
+
     <filter>
         <item>
             <key>highway</key>
             <r_operator>equals</r_operator>
-            <value>*</value>
+            <value>value0</value>
         </item>
     </filter>
     <filter>
         <item>
             <key>highway</key>
             <r_operator>equals</r_operator>
-            <value>bus_stop</value>
+            <value>value1</value>
         </item>
     </filter>
     <polynomial>
-        <rectangle>
-            <lefttop latitude="0" longitude="0"/>
-            <bottomright latitude="0" longitude="0"/>
-        </rectangle>
+        <circle>
+            <centre latitude="0" longitude="0"/>
+            <radius>50</radius>
+        </circle>
     </polynomial>
 </query>

@@ -99,9 +99,9 @@
     </xsl:template>
 
     <xsl:template match="rectangle">
-        <xsl:apply-templates select="lefttop"/>
-        <xsl:call-template name="comma"/>
         <xsl:apply-templates select="bottomright"/>
+        <xsl:call-template name="comma"/>
+        <xsl:apply-templates select="lefttop"/>
     </xsl:template>
 
     <xsl:template match="lefttop">
