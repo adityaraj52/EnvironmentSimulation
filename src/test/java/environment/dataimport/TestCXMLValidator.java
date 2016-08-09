@@ -2,6 +2,7 @@ package environment.dataimport;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.util.JAXBSource;
 import javax.xml.transform.OutputKeys;
@@ -16,12 +17,13 @@ import java.io.StringWriter;
  */
 public class TestCXMLValidator
 {
-    private environment.dataimport.Query m_queryString;
+    private environment.dataimport.Query m_polynomial;
+    private String m_queryString;
 
     @Before
-     public void before()
+    public void before()
     {
-        m_queryString = new environment.dataimport.Query();
+        m_polynomial = new environment.dataimport.Query();
     }
 
     /**
@@ -40,7 +42,7 @@ public class TestCXMLValidator
         l_item.setROperator( p_operator );
         l_item.setValue( p_value );
         l_filters.setItem( l_item );
-        m_queryString.getFilter().add( l_filters );
+        m_polynomial.getFilter().add( l_filters );
     }
 
     /**
@@ -79,7 +81,7 @@ public class TestCXMLValidator
         l_tempIpolynomial.setRectangle( l_rectangle );
 
         //Add the polynomial to querystring
-        m_queryString.setPolynomial( l_tempIpolynomial );
+        m_polynomial.setPolynomial( l_tempIpolynomial );
     }
 
     /**
@@ -107,8 +109,11 @@ public class TestCXMLValidator
         l_circle.setCentre( l_centre );
         l_circle.setRadius( p_value );
 
+        //Add circle to polynomial
+        l_tempIpolynomial.setCircle( l_circle );
+
         //Add the polynomial to querystring
-        m_queryString.setPolynomial( l_tempIpolynomial );
+        m_polynomial.setPolynomial( l_tempIpolynomial );
     }
 
     /**
@@ -128,9 +133,33 @@ public class TestCXMLValidator
         l_item.setROperator( p_operator );
         l_item.setValue( p_value );
         l_filters.setItem( l_item );
-        m_queryString.getFilter().add( l_filters );
+        m_polynomial.getFilter().add( l_filters );
     }
 
+    /**
+     * Set Filters for OSM File (Not working yet.... has to be fixed)
+     *
+     *
+     * @param p_streamSource a parameter for tag key
+     * @param p_jaxbContext a parameter for query string
+     * @return String
+     * @throws Exception for files
+     *
+     **/
+    public String createTransformer( final String p_streamSource, final Class p_jaxbContext ) throws Exception
+    {
+        //Create Transformer
+        final Transformer l_transformer = TransformerFactory.newInstance().newTransformer( new StreamSource( p_streamSource ) );
+        l_transformer.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );
+
+        // Source
+        final JAXBSource l_source = new JAXBSource( JAXBContext.newInstance( p_jaxbContext ), m_polynomial );
+
+        // Transform
+        final StringWriter l_sw = new StringWriter();
+        l_transformer.transform( l_source, new StreamResult( l_sw ) );
+        return l_sw.toString();
+    }
 
     /**
      * test for XSLT transformation' using JAXB
@@ -142,26 +171,19 @@ public class TestCXMLValidator
     {
         //Define bounding box in format South, West, North, East
         //Format BottomRight (Latitude, Longitude) LeftTop (Latitude, Longitude)
-        this.defineRectangle( 12, 11, 14, 13 );
+        //this.defineRectangle( 12, 11, 14, 13 );
 
         //Define a circcular bounding region with centre latitude, longitude followed by
         //radius of the region to look for
-        //this.defineCircle( 11, 11, 100 );
+        this.defineCircle( 1, 0, 50 );
 
         //Set filters for the query
         this.setFilters( Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "primary" );
         this.setFilters( Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "bus_stop" );
 
-        //Create Transformer
-        final Transformer l_transformer = TransformerFactory.newInstance().newTransformer( new StreamSource( "src/main/xsd/query.xsl" ) );
-        l_transformer.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );
-
-        // Source
-        final JAXBSource l_source = new JAXBSource( JAXBContext.newInstance( environment.dataimport.Query.class ), m_queryString );
-
-        // Transform
-        final StringWriter l_sw = new StringWriter();
-        l_transformer.transform( l_source, new StreamResult( l_sw ) );
-        System.out.println(  "\n" + l_sw + "\n" );
+        m_queryString = this.createTransformer( "src/main/xsd/query.xsl", environment.dataimport.Query.class );
+        System.out.println();
+        System.out.println( m_queryString );
+        System.out.println();
     }
 }
