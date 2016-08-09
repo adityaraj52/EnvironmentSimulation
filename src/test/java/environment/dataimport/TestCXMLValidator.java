@@ -103,14 +103,9 @@ public class TestCXMLValidator
         // Source
         final JAXBSource l_source = new JAXBSource( JAXBContext.newInstance( environment.dataimport.Query.class ), l_queryString );
 
-        // Result
-        final StreamResult l_result = new StreamResult( System.out );
-
-        final XM
-
         // Transform
         System.out.println( "\n\n" );
-        l_transformer.transform( l_source, l_result ).getText();
+        l_transformer.transform( l_source, new StreamResult( System.out ) );
         System.out.println( "\n\n" );
     }
 }
