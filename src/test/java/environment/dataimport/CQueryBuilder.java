@@ -1,8 +1,5 @@
 package environment.dataimport;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.util.JAXBSource;
 import javax.xml.transform.OutputKeys;
@@ -15,15 +12,24 @@ import java.io.StringWriter;
 /**
  * Created by adityaraj on 28/07/16.
  */
-public class TestCXMLValidator
+public class CQueryBuilder
 {
     private environment.dataimport.Query m_polynomial;
     private String m_queryString;
 
-    @Before
-    public void before()
+    public CQueryBuilder()
     {
         m_polynomial = new environment.dataimport.Query();
+    }
+
+    public void setQueryString( final String p_string )
+    {
+        m_queryString = p_string;
+    }
+
+    public String getQueryString()
+    {
+        return m_queryString;
     }
 
     /**
@@ -161,29 +167,4 @@ public class TestCXMLValidator
         return l_sw.toString();
     }
 
-    /**
-     * test for XSLT transformation' using JAXB
-     *
-     * @throws Exception on failure
-     */
-    @Test
-    public void buildQuery() throws Exception
-    {
-        //Define bounding box in format South, West, North, East
-        //Format BottomRight (Latitude, Longitude) LeftTop (Latitude, Longitude)
-        //this.defineRectangle( 12, 11, 14, 13 );
-
-        //Define a circcular bounding region with centre latitude, longitude followed by
-        //radius of the region to look for
-        this.defineCircle( 1, 0, 50 );
-
-        //Set filters for the query
-        this.setFilters( Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "primary" );
-        this.setFilters( Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "bus_stop" );
-
-        m_queryString = this.createTransformer( "src/main/xsd/query.xsl", environment.dataimport.Query.class );
-        System.out.println();
-        System.out.println( m_queryString );
-        System.out.println();
-    }
 }
