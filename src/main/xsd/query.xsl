@@ -170,7 +170,7 @@
 
     <xsl:template match="/query/filter/item">
         <xsl:apply-templates select="key"/>
-        <xsl:apply-templates select="operator"/>
+        <xsl:apply-templates select="r_operator"/>
         <xsl:apply-templates select="value"/>
     </xsl:template>
 
@@ -179,7 +179,7 @@
         <xsl:value-of select="."/>
     </xsl:template>
 
-    <xsl:template match="operator">
+    <xsl:template match="r_operator">
 
         <xsl:choose>
 

@@ -7,22 +7,21 @@
     <filter>
         <item>
             <key>highway</key>
-            <operator>equals</operator>
-            <value>motorway</value>
+            <r_operator>equals</r_operator>
+            <value>*</value>
         </item>
     </filter>
     <filter>
         <item>
             <key>highway</key>
-            <operator>equals</operator>
-            <value>primary</value>
+            <r_operator>equals</r_operator>
+            <value>bus_stop</value>
         </item>
     </filter>
     <polynomial>
-        <list>
-            <position latitude="0" longitude="0"/>
-            <position latitude="0" longitude="0"/>
-            <position latitude="0" longitude="0"/>
-        </list>
+        <rectangle>
+            <lefttop latitude="0" longitude="0"/>
+            <bottomright latitude="0" longitude="0"/>
+        </rectangle>
     </polynomial>
 </query>

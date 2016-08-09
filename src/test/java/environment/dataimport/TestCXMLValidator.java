@@ -44,35 +44,58 @@ public class TestCXMLValidator
     @Test
     public void buildQuery() throws Exception
     {
-
+        //specify a query string composed of nodes and filter expression
         final environment.dataimport.Query l_queryString = new environment.dataimport.Query();
+
+        //Specifying the node value... In this test case rectangle
         final Ipolynomial l_tempIpolynomial = new Ipolynomial();
 
+        //Instantiate a rectangle class to set the values
         final Ipolynomial.Rectangle l_rectangle = new Ipolynomial.Rectangle();
+
+        //Set BottomRight latitudes
         final Ipolynomial.Rectangle.Bottomright l_bottomRight = new Ipolynomial.Rectangle.Bottomright();
         l_bottomRight.setLatitude( 11 );
         l_bottomRight.setLongitude( 11 );
 
+        //Set LeftTop Latitudes
         final Ipolynomial.Rectangle.Lefttop l_leftTop = new Ipolynomial.Rectangle.Lefttop();
         l_leftTop.setLatitude( 11 );
         l_leftTop.setLongitude( 11 );
 
+        //Set the properties for the rectangle
         l_rectangle.setBottomright( l_bottomRight );
         l_rectangle.setLefttop( l_leftTop );
 
+        //Set the properties of polynomial
         l_tempIpolynomial.setRectangle( l_rectangle );
+
+        //Add the polynomial to querystring
         l_queryString.setPolynomial( l_tempIpolynomial );
 
+        //Now adding filter expressions
+
+        //Specify First filter
         final IfilterExpression l_filters = new IfilterExpression();
         final IfilterItem l_item = new IfilterItem();
         l_item.setKey( Iosmkey.HIGHWAY );
         l_item.setROperator( IoperatorRelational.EQUALS );
         l_item.setValue( "bus_stop" );
 
-        l_filters.setItem( l_item );
+        //Specify second filter
+        final IfilterExpression l_filters1 = new IfilterExpression();
+        final IfilterItem l_item1 = new IfilterItem();
+        l_item1.setKey( Iosmkey.RAILWAYS );
+        l_item1.setROperator( IoperatorRelational.EQUALS );
+        l_item1.setValue( "*" );
 
-        System.out.println( " printing filters " );
-        System.out.println( l_queryString.getFilter() );
+        //Set filters
+        l_filters.setItem( l_item );
+        l_filters1.setItem( l_item1 );
+
+        //Add filters to the query string
+        l_queryString.getFilter().add( l_filters );
+        l_queryString.getFilter().add( l_filters1 );
 
         //Create Transformer
         final Transformer l_transformer = TransformerFactory.newInstance().newTransformer( new StreamSource( "src/main/xsd/query.xsl" ) );
@@ -83,8 +106,11 @@ public class TestCXMLValidator
         // Result
         final StreamResult l_result = new StreamResult( System.out );
 
-        // Transform
-        l_transformer.transform( l_source, l_result );
+        final XM
 
+        // Transform
+        System.out.println( "\n\n" );
+        l_transformer.transform( l_source, l_result ).getText();
+        System.out.println( "\n\n" );
     }
 }

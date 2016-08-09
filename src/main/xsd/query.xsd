@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
     <!-- http://stackoverflow.com/questions/23110212/transforming-one-jaxb-object-to-another-using-xslt -->
 
@@ -16,9 +15,6 @@
         </xs:complexType>
     </xs:element>
 
-
-
-
     <xs:complexType name="ifilter_expression" final="#all">
         <xs:annotation>
             <xs:documentation>full filter expression</xs:documentation>
@@ -28,9 +24,6 @@
         </xs:sequence>
     </xs:complexType>
 
-
-
-
     <xs:complexType name="ifilter_item" final="#all">
         <xs:annotation>
             <xs:documentation>defines a single filter item</xs:documentation>
@@ -38,13 +31,15 @@
         <xs:all>
             <xs:element name="key" type="iosmkey"> </xs:element>
             <xs:element name="r_operator" default="equals" type="ioperator_relational"> </xs:element>
-            <xs:element name="value" default="*"/>
+            <xs:element name="value">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
         </xs:all>
-        <xs:attribute name="operator" type="ioperator_boolean"> </xs:attribute>
     </xs:complexType>
-
-
-
 
     <xs:simpleType name="ioperator_relational" final="restriction">
         <xs:annotation>
@@ -83,8 +78,6 @@
             <xs:enumeration value="junction"/>
         </xs:restriction>
     </xs:simpleType>
-
-
 
 
     <xs:complexType name="ipolynomial" final="#all">
@@ -152,8 +145,6 @@
             </xs:element>
         </xs:choice>
     </xs:complexType>
-
-
 
 
     <xs:attributeGroup name="gps">
