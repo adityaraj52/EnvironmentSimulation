@@ -3,14 +3,12 @@ package environment.dataimport;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Test;
 import org.openstreetmap.osmosis.tagfilter.v0_6.TagFilter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashSet;
 import java.util.Map;
@@ -32,7 +30,7 @@ public final class TestCOSMReader
      *
      * @throws MalformedURLException on URL malformat
      */
-    @Before
+    //@Before
     public void before() throws MalformedURLException
     {
         m_source = new COpenStreetMap( 11.54, 48.14, 11.543, 48.145 );
@@ -45,7 +43,7 @@ public final class TestCOSMReader
      * @throws IOException on io reading
      * @throws JAXBException on XML parsing error
      */
-    @Test
+    //@Test
     public void testOSMRead() throws IOException, JAXBException
     {
         System.out.println( "\nTest to create a sample xml file in target/map.osm location based on OSM Schema" );
@@ -66,7 +64,7 @@ public final class TestCOSMReader
      * @throws IOException on io reading
      * @throws JAXBException on XML parsing error
      */
-    @Test
+    //@Test
     public void testTagFilter() throws IOException, JAXBException
     {
         System.out.println( "\nTest to check tag filter (Still has to tested)\n" );
@@ -95,7 +93,7 @@ public final class TestCOSMReader
      * @throws IOException on io reading
      * @throws JAXBException on XML parsing error
      */
-    @Test
+    //@Test
     public void unmarshall() throws IOException, JAXBException
     {
         System.out.println( "\nTest to read a sample xml file stored in xsd/map.osm location and further store the elements in OSM class" );

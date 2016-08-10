@@ -8,6 +8,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.StringWriter;
+import java.util.HashMap;
 
 /**
  * Created by adityaraj on 28/07/16.
@@ -16,17 +17,33 @@ public class CQueryBuilder
 {
     private environment.dataimport.Query m_polynomial;
     private String m_queryString;
+    private HashMap<String, Iosmkey> m_hashTagMapper;
+    private HashMap<String, IoperatorRelational> m_filterRoperatorMapper;
 
+    /**
+     * querybuilder
+     */
     public CQueryBuilder()
     {
         m_polynomial = new environment.dataimport.Query();
     }
 
-    public void setQueryString( final String p_string )
+    /**
+     * Set a query string
+     *
+     * @param p_string takes string parameter
+     * @return CQueryBuilder
+     */
+    public CQueryBuilder setQueryString( final String p_string )
     {
         m_queryString = p_string;
+        return CQueryBuilder.this;
     }
 
+    /**
+     * Gets the query String
+     * @return String
+     */
     public String getQueryString()
     {
         return m_queryString;
@@ -59,8 +76,9 @@ public class CQueryBuilder
      * @param p_bottomLongitude a parameter for bottomLongitude
      * @param p_topLatitude a parameter for setting topLatitude
      * @param p_topLongitude a parameter for setting top Longitude
+     * @return CQueryBuilder the object itself
      **/
-    public void defineRectangle( final double p_bottomLatitude, final double p_bottomLongitude,
+    public CQueryBuilder defineRectangle( final double p_bottomLatitude, final double p_bottomLongitude,
                                                                                     final double p_topLatitude, final double p_topLongitude )
     {
         //Specifying the node value... In this test case rectangle
@@ -88,6 +106,8 @@ public class CQueryBuilder
 
         //Add the polynomial to querystring
         m_polynomial.setPolynomial( l_tempIpolynomial );
+
+        return CQueryBuilder.this;
     }
 
     /**
@@ -97,9 +117,9 @@ public class CQueryBuilder
      * @param p_centreLatitude a parameter for centre latitude
      * @param p_centreLongitude a parameter for centre longitude
      * @param p_value radius for the circle
-     *
+     * @return CQueryBuilder returns the instance itself
      **/
-    public void defineCircle( final double p_centreLatitude, final double p_centreLongitude, final double p_value )
+    public CQueryBuilder defineCircle( final double p_centreLatitude, final double p_centreLongitude, final double p_value )
     {
         final Ipolynomial l_tempIpolynomial = new Ipolynomial();
 
@@ -120,6 +140,8 @@ public class CQueryBuilder
 
         //Add the polynomial to querystring
         m_polynomial.setPolynomial( l_tempIpolynomial );
+
+        return CQueryBuilder.this;
     }
 
     /**
@@ -167,4 +189,25 @@ public class CQueryBuilder
         return l_sw.toString();
     }
 
+    /**
+     * Set Filters for OSM File
+     *
+     * @param p_filterStrings setting filter strings
+     * @return CQueryBuilder
+     **/
+    public CQueryBuilder setFiltersStream( final CFilterStrings ... p_filterStrings )
+    {
+        for ( final CFilterStrings l_filter: p_filterStrings
+             )
+        {
+            final IfilterExpression l_filters = new IfilterExpression();
+            final IfilterItem l_item = new IfilterItem();
+            l_item.setKey( l_filter.getTag() );
+            l_item.setROperator( l_filter.getROperator() );
+            l_item.setValue( l_filter.getValue() );
+            l_filters.setItem( l_item );
+            m_polynomial.getFilter().add( l_filters );
+        }
+        return CQueryBuilder.this;
+    }
 }

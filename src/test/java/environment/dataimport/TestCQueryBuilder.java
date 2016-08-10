@@ -19,21 +19,22 @@ public class TestCQueryBuilder
 
         //Define bounding box in format South, West, North, East
         //Format BottomRight (Latitude, Longitude) LeftTop (Latitude, Longitude)
-        l_queryBuilder.defineRectangle( 12, 11, 14, 13 );
+        //l_queryBuilder.defineRectangle( 12, 11, 14, 13 );
 
-        //Define a circcular bounding region with centre latitude, longitude followed by
-        //radius of the region to look for
-        //l_queryBuilder.defineCircle( 1, 0, 50 );
+        //Define a circular bounding region with centre latitude, longitude followed by
+        //radius of the region to look for.
 
-        //Set filters for the query
-        l_queryBuilder.setFilters( Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "primary" );
-        l_queryBuilder.setFilters( Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "bus_stop" );
+        //Get the query string by
+        //1. set bounding box
+        //2. set filter stream
+        //3. set queryString by chosing the right transformation files specified in order XSLT file and then the JAXB generated Class
+        //4. Get the Query String
 
-        //setQueryString
-        l_queryBuilder.setQueryString( l_queryBuilder.createTransformer( "src/main/xsd/query.xsl", environment.dataimport.Query.class ) );
-
-        //Print QueryString
-        System.out.println( l_queryBuilder.getQueryString() );
+        System.out.println(
+                l_queryBuilder.defineRectangle( 12, 11, 14, 13 )
+                .setFiltersStream( new CFilterStrings( "highway", "equals", "primary" ), new CFilterStrings( "railway", "not equals", "bus_stop" ) )
+                .setQueryString( l_queryBuilder.createTransformer( "src/main/xsd/query.xsl", environment.dataimport.Query.class ) )
+                .getQueryString() );
 
     }
 
