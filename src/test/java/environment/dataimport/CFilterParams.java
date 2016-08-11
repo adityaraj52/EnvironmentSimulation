@@ -49,9 +49,14 @@ public class CFilterParams
         }
     };
 
-    private HashMap<ERoperator, IoperatorRelational> m_filterRoperatorMapper;
-
-    CFilterParams( final ETags p_tag, final ERoperator p_operator, final String p_value )
+    /**
+     * Default constructor
+     *
+     * @param p_tag tag
+     * @param p_operator operator
+     * @param p_value value
+     */
+    public CFilterParams( final ETags p_tag, final ERoperator p_operator, final String p_value )
     {
         m_tag = p_tag;
         m_operator = p_operator;
@@ -85,5 +90,10 @@ public class CFilterParams
     protected String getValue()
     {
         return m_value;
+    }
+
+    protected HashMap setHashMap()
+    {
+        return this.m_hashTagMapper;
     }
 }
