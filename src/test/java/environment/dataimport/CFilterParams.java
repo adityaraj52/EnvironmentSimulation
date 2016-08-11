@@ -6,7 +6,7 @@ import java.util.HashMap;
  * Created by adityaraj on 11/08/16.
  * */
 
-public class CFilterStrings
+public class CFilterParams
 {
     private String m_tag;
     private String m_operator;
@@ -34,7 +34,7 @@ public class CFilterStrings
 
     private HashMap<String, IoperatorRelational> m_filterRoperatorMapper;
 
-    CFilterStrings( final String p_tag, final String p_operator, final String p_value )
+    CFilterParams( final String p_tag, final String p_operator, final String p_value )
     {
         m_tag = p_tag;
         m_operator = p_operator;

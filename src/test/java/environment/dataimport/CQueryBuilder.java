@@ -8,6 +8,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -145,23 +147,40 @@ public class CQueryBuilder
     }
 
     /**
-     * Set Filters for OSM File (Not working yet.... has to be fixed)
+     * Set Filters for OSM File (Use Streams to optiimise for loop)
      *
      *
-     * @param p_key a parameter for tag key
-     * @param p_operator a parameter for query string
      * @param p_value a parameter for query string
-     *
+     * @return CQueryBuilder
      **/
-    public void defineList( final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value )
+    public CQueryBuilder defineList( final double ... p_value )
     {
-        final IfilterExpression l_filters = new IfilterExpression();
-        final IfilterItem l_item = new IfilterItem();
-        l_item.setKey( p_key );
-        l_item.setROperator( p_operator );
-        l_item.setValue( p_value );
-        l_filters.setItem( l_item );
-        m_polynomial.getFilter().add( l_filters );
+        final Ipolynomial l_tempIpolynomial = new Ipolynomial();
+
+        //Instantiate a List class to set the values
+        final Ipolynomial.List l_list = new Ipolynomial.List();
+
+        final Collection<Ipolynomial.List.Position> l_positionCollection = new ArrayList<>();
+
+        //l_positionCollection.parallelStream().filter()
+        for ( int i = 0; i < p_value.length; i += 2 )
+        {
+            //Set Position Cordinates in terms of latitudes and longitudes
+            final Ipolynomial.List.Position l_position = new Ipolynomial.List.Position();
+            l_position.setLatitude( p_value[i] );
+            l_position.setLongitude( p_value[i + 1] );
+            l_positionCollection.add( l_position );
+        }
+        //Add the positions to collection list
+        l_list.getPosition().addAll( l_positionCollection );
+
+        //Add list to polynomial
+        l_tempIpolynomial.setList( l_list );
+
+        //Add the polynomial to querystring
+        m_polynomial.setPolynomial( l_tempIpolynomial );
+
+        return CQueryBuilder.this;
     }
 
     /**
@@ -190,15 +209,14 @@ public class CQueryBuilder
     }
 
     /**
-     * Set Filters for OSM File
+     * Set Filters for OSM File Use streams to optmise and remove for loop
      *
      * @param p_filterStrings setting filter strings
      * @return CQueryBuilder
      **/
-    public CQueryBuilder setFiltersStream( final CFilterStrings ... p_filterStrings )
+    public CQueryBuilder setFiltersStream( final CFilterParams... p_filterStrings )
     {
-        for ( final CFilterStrings l_filter: p_filterStrings
-             )
+        for ( final CFilterParams l_filter: p_filterStrings )
         {
             final IfilterExpression l_filters = new IfilterExpression();
             final IfilterItem l_item = new IfilterItem();
