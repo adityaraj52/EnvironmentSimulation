@@ -32,13 +32,12 @@ public class CQueryBuilder
 
     /**
      * Set a query string
-     *
-     * @param p_string takes string parameter
      * @return CQueryBuilder
+     * @throws Exception for making transformation errors
      */
-    public CQueryBuilder setQueryString( final String p_string )
+    public CQueryBuilder setQueryString() throws Exception
     {
-        m_queryString = p_string;
+        m_queryString = this.createTransformer( "src/main/xsd/query.xsl", environment.dataimport.Query.class );
         return CQueryBuilder.this;
     }
 

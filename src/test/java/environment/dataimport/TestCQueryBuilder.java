@@ -37,10 +37,10 @@ public class TestCQueryBuilder
         System.out.println(
                 l_queryBuilder
                         //.defineRectangle( 12, 11, 14, 13 )
-                        //.defineCircle( 0, 0, 50 )
-                        .defineList( 10, 11, 12, 13, 14, 15 )
+                        .defineCircle( 0, 0, 50 )
+                        //.defineList( 10, 11, 12, 13, 14, 15 )
                 .setFiltersStream( new CFilterParams( "highway", "equals", "primary" ), new CFilterParams( "railway", "not equals", "bus_stop" ) )
-                .setQueryString( l_queryBuilder.createTransformer( "src/main/xsd/query.xsl", environment.dataimport.Query.class ) )
+                .setQueryString()
                 .getQueryString() );
 
     }
