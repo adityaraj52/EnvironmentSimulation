@@ -38,8 +38,9 @@ public class TestCQueryBuilder
                 l_queryBuilder
                         //.defineRectangle( 12, 11, 14, 13 )
                         .defineCircle( 0, 0, 50 )
-                        //.defineList( 10, 11, 12, 13, 14, 15 )
-                .setFiltersStream( new CFilterParams( "highway", "equals", "primary" ), new CFilterParams( "railway", "not equals", "bus_stop" ) )
+                        .defineList( 10, 11, 12, 13, 14, 15 )
+                .setFiltersStream( new CFilterParams( CFilterParams.ETags.highway, CFilterParams.ERoperator.equals, "primary" ),
+                        new CFilterParams( CFilterParams.ETags.highway, CFilterParams.ERoperator.not_equals, "bus_stop" ) )
                 .setQueryString()
                 .getQueryString() );
 

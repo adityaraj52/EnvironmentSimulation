@@ -8,33 +8,50 @@ import java.util.HashMap;
 
 public class CFilterParams
 {
-    private String m_tag;
-    private String m_operator;
+    /**
+     * Define enum for possible tag values
+     */
+    public enum ETags
+    {
+        highway, railways, waterways, building, junction, tourism
+    }
+
+    /**
+     * Define enum for possible relational operators
+     */
+    public enum ERoperator
+    {
+        equals, not_equals
+    }
+
+    private ETags m_tag;
+    private ERoperator m_operator;
     private String m_value;
 
-    private HashMap<String, Iosmkey> m_hashTagMapper = new HashMap<String, Iosmkey>()
+
+    private HashMap<ETags, Iosmkey> m_hashTagMapper = new HashMap<ETags, Iosmkey>()
     {
         {
-            put( "highway", Iosmkey.HIGHWAY );
-            put( "railway", Iosmkey.RAILWAYS );
-            put( "building", Iosmkey.BUILDING );
-            put( "junction", Iosmkey.JUNCTION );
-            put( "tourism", Iosmkey.TOURISM );
-            put( "waterays", Iosmkey.WATERWAYS );
+            put( ETags.highway, Iosmkey.HIGHWAY );
+            put( ETags.railways, Iosmkey.RAILWAYS );
+            put( ETags.building, Iosmkey.BUILDING );
+            put( ETags.junction, Iosmkey.JUNCTION );
+            put( ETags.tourism, Iosmkey.TOURISM );
+            put( ETags.waterways, Iosmkey.WATERWAYS );
         }
     };
 
-    private HashMap<String, IoperatorRelational> m_roperatorMapper = new HashMap<String, IoperatorRelational>()
+    private HashMap<ERoperator, IoperatorRelational> m_roperatorMapper = new HashMap<ERoperator, IoperatorRelational>()
     {
         {
-            put( "equals", IoperatorRelational.EQUALS );
-            put( "not equals", IoperatorRelational.NOT_EQUALS );
+            put( ERoperator.equals, IoperatorRelational.EQUALS );
+            put( ERoperator.not_equals, IoperatorRelational.NOT_EQUALS );
         }
     };
 
-    private HashMap<String, IoperatorRelational> m_filterRoperatorMapper;
+    private HashMap<ERoperator, IoperatorRelational> m_filterRoperatorMapper;
 
-    CFilterParams( final String p_tag, final String p_operator, final String p_value )
+    CFilterParams( final ETags p_tag, final ERoperator p_operator, final String p_value )
     {
         m_tag = p_tag;
         m_operator = p_operator;
