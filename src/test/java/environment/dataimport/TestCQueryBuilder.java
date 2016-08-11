@@ -1,6 +1,5 @@
 package environment.dataimport;
 
-import javafx.util.Pair;
 import org.junit.Test;
 
 /**
@@ -30,9 +29,6 @@ public class TestCQueryBuilder
         //3. set queryString by chosing the right transformation files specified in order XSLT file and
         // then the JAXB generated Class
         //4. Get the Query String
-
-        final Pair<Double, Double> l_pair = new Pair<Double, Double>( 10d, 10d );
-
 
         System.out.println(
                 l_queryBuilder
