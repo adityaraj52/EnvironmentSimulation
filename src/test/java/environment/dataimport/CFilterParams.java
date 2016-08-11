@@ -62,7 +62,7 @@ public class CFilterParams
      * get tag value
      * @return tag value
      */
-    public Iosmkey getTag()
+    protected Iosmkey getTag()
     {
         return m_hashTagMapper.get( m_tag );
     }
@@ -72,7 +72,7 @@ public class CFilterParams
      * @return operator
      *
      */
-    public IoperatorRelational getROperator()
+    protected IoperatorRelational getROperator()
     {
         return m_roperatorMapper.get( m_operator );
     }
@@ -82,7 +82,7 @@ public class CFilterParams
      * @return value
      *
      */
-    public String getValue()
+    protected String getValue()
     {
         return m_value;
     }
