@@ -10,7 +10,6 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
 /**
  * Created by adityaraj on 28/07/16.
@@ -19,8 +18,6 @@ public class CQueryBuilder
 {
     private environment.dataimport.Query m_polynomial;
     private String m_queryString;
-    private HashMap<String, Iosmkey> m_hashTagMapper;
-    private HashMap<String, IoperatorRelational> m_filterRoperatorMapper;
 
     /**
      * querybuilder
@@ -161,25 +158,30 @@ public class CQueryBuilder
 
         final Collection<Ipolynomial.List.Position> l_positionCollection = new ArrayList<>();
 
-        //l_positionCollection.parallelStream().filter()
-        for ( int i = 0; i < p_value.length; i += 2 )
+        if ( p_value.length % 2 == 0 || ( p_value[0] != p_value[ p_value.length - 2 ] ) || ( p_value[1] != p_value[ p_value.length - 1 ] ) )
         {
-            //Set Position Cordinates in terms of latitudes and longitudes
-            final Ipolynomial.List.Position l_position = new Ipolynomial.List.Position();
-            l_position.setLatitude( p_value[i] );
-            l_position.setLongitude( p_value[i + 1] );
-            l_positionCollection.add( l_position );
+            //l_positionCollection.parallelStream().filter()
+            for ( int i = 0; i < p_value.length; i += 2 )
+            {
+                //Set Position Cordinates in terms of latitudes and longitudes
+                final Ipolynomial.List.Position l_position = new Ipolynomial.List.Position();
+                l_position.setLatitude( p_value[i] );
+                l_position.setLongitude( p_value[i + 1] );
+                l_positionCollection.add( l_position );
+            }
+            //Add the positions to collection list
+            l_list.getPosition().addAll( l_positionCollection );
+
+            //Add list to polynomial
+            l_tempIpolynomial.setList( l_list );
+
+            //Add the polynomial to querystring
+            m_polynomial.setPolynomial( l_tempIpolynomial );
+
+            return CQueryBuilder.this;
         }
-        //Add the positions to collection list
-        l_list.getPosition().addAll( l_positionCollection );
-
-        //Add list to polynomial
-        l_tempIpolynomial.setList( l_list );
-
-        //Add the polynomial to querystring
-        m_polynomial.setPolynomial( l_tempIpolynomial );
-
-        return CQueryBuilder.this;
+        System.out.println( "\nError: Incorrect number of co-ordinate arguments and/or end co-rodinates must match with starting co-oridnates\n" );
+        return null;
     }
 
     /**
