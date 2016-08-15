@@ -6,7 +6,7 @@ import java.util.HashMap;
  * Created by adityaraj on 11/08/16.
  * */
 
-public class CFilterParams
+public class CFilterParams<K extends Iosmkey, R extends IoperatorRelational>
 {
     /**
      * Define enum for possible tag values
@@ -29,23 +29,23 @@ public class CFilterParams
     private String m_value;
 
 
-    private HashMap<ETags, Iosmkey> m_hashTagMapper = new HashMap<ETags, Iosmkey>()
+    private HashMap<ETags, K> m_hashTagMapper = new HashMap<ETags, K>()
     {
         {
-            put( ETags.highway, Iosmkey.HIGHWAY );
-            put( ETags.railways, Iosmkey.RAILWAYS );
-            put( ETags.building, Iosmkey.BUILDING );
-            put( ETags.junction, Iosmkey.JUNCTION );
-            put( ETags.tourism, Iosmkey.TOURISM );
-            put( ETags.waterways, Iosmkey.WATERWAYS );
+            put( ETags.highway, (K) K.HIGHWAY );
+            put( ETags.railways, (K) K.RAILWAYS );
+            put( ETags.building, (K) K.BUILDING );
+            put( ETags.junction, (K) K.JUNCTION );
+            put( ETags.tourism, (K) K.TOURISM );
+            put( ETags.waterways, (K) K.WATERWAYS );
         }
     };
 
-    private HashMap<ERoperator, IoperatorRelational> m_roperatorMapper = new HashMap<ERoperator, IoperatorRelational>()
+    private HashMap<ERoperator, R> m_roperatorMapper = new HashMap<ERoperator, R>()
     {
         {
-            put( ERoperator.equals, IoperatorRelational.EQUALS );
-            put( ERoperator.not_equals, IoperatorRelational.NOT_EQUALS );
+            put( ERoperator.equals, (R) R.EQUALS );
+            put( ERoperator.not_equals, (R) R.NOT_EQUALS );
         }
     };
 
@@ -67,7 +67,7 @@ public class CFilterParams
      * get tag value
      * @return tag value
      */
-    protected Iosmkey getTag()
+    protected K getTag()
     {
         return m_hashTagMapper.get( m_tag );
     }
@@ -77,7 +77,7 @@ public class CFilterParams
      * @return operator
      *
      */
-    protected IoperatorRelational getROperator()
+    protected R getROperator()
     {
         return m_roperatorMapper.get( m_operator );
     }

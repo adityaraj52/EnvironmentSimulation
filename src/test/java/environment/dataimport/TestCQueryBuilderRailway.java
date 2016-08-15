@@ -1,7 +1,5 @@
 package environment.dataimport;
 
-import org.junit.Test;
-
 /**
  * Created by adityaraj on 09/08/16.
  */
@@ -12,7 +10,6 @@ public class TestCQueryBuilderRailway
      *
      * @throws Exception on failure
      */
-    @Test
     public void buildQuery() throws Exception
     {
         final CQueryBuilder l_queryBuilder = new CQueryBuilder();

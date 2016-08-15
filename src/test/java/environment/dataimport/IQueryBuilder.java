@@ -3,7 +3,7 @@ package environment.dataimport;
 /**
  * Created by adityaraj on 15/08/16.
  */
-public interface IQueryBuilder
+public interface IQueryBuilder<T extends Iosmkey, R extends IoperatorRelational>
 {
     /**
      * Set a query string
@@ -26,7 +26,7 @@ public interface IQueryBuilder
      * @param p_value a parameter for query string
      *
      **/
-    public void setFilters( final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value );
+    public void setFilters( final T p_key, final R p_operator, final String p_value );
 
     /**
      * Define rectangle polynomial and set it
