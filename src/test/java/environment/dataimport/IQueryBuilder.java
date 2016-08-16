@@ -19,14 +19,13 @@ public interface IQueryBuilder<T extends Iosmkey, R extends IoperatorRelational>
     public String getQueryString();
 
     /**
-     * Set Filters for OSM File
+     * Set multiple Filters for OSM File
+     * Use streams to optmise and remove for loop
      *
-     * @param p_key a parameter for tag key
-     * @param p_operator a parameter for query string
-     * @param p_value a parameter for query string
-     *
+     * @param p_filterStrings setting filter strings
+     * @return CQueryBuilder
      **/
-    public void setFilters( final T p_key, final R p_operator, final String p_value );
+    public CQueryBuilder setFiltersStream( final CFilterParams... p_filterStrings );
 
     /**
      * Define rectangle polynomial and set it
@@ -72,13 +71,5 @@ public interface IQueryBuilder<T extends Iosmkey, R extends IoperatorRelational>
      *
      **/
     public String createTransformer( final String p_streamSource, final Class p_jaxbContext ) throws Exception;
-
-    /**
-     * Set Filters for OSM File Use streams to optmise and remove for loop
-     *
-     * @param p_filterStrings setting filter strings
-     * @return CQueryBuilder
-     **/
-    public CQueryBuilder setFiltersStream( final CFilterParams... p_filterStrings );
 
 }

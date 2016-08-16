@@ -48,25 +48,6 @@ public class CQueryBuilder implements IQueryBuilder
     }
 
     /**
-     * Set Filters for OSM File
-     *
-     * @param p_key a parameter for tag key
-     * @param p_operator a parameter for query string
-     * @param p_value a parameter for query string
-     *
-     **/
-    public void setFilters( final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value )
-    {
-        final IfilterExpression l_filters = new IfilterExpression();
-        final IfilterItem l_item = new IfilterItem();
-        l_item.setKey( p_key );
-        l_item.setROperator( p_operator );
-        l_item.setValue( p_value );
-        l_filters.setItem( l_item );
-        m_polynomial.getFilter().add( l_filters );
-    }
-
-    /**
      * Define rectangle polynomial and set it
      *
      *
