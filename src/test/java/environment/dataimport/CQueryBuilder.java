@@ -175,7 +175,7 @@ public class CQueryBuilder implements IQueryBuilder
      * @throws Exception for files
      *
      **/
-    public String createTransformer( final String p_streamSource, final Class p_jaxbContext ) throws Exception
+    public String createTransformer( final String p_streamSource, final Class<?> p_jaxbContext ) throws Exception
     {
         //Create Transformer
         final Transformer l_transformer = TransformerFactory.newInstance().newTransformer( new StreamSource( p_streamSource ) );

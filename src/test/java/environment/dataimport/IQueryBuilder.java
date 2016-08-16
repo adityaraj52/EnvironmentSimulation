@@ -3,7 +3,7 @@ package environment.dataimport;
 /**
  * Created by adityaraj on 15/08/16.
  */
-public interface IQueryBuilder<T extends Iosmkey, R extends IoperatorRelational>
+public interface IQueryBuilder
 {
     /**
      * Set a query string
@@ -70,6 +70,6 @@ public interface IQueryBuilder<T extends Iosmkey, R extends IoperatorRelational>
      * @throws Exception for files
      *
      **/
-    public String createTransformer( final String p_streamSource, final Class p_jaxbContext ) throws Exception;
+    public String createTransformer( final String p_streamSource, final Class<?> p_jaxbContext ) throws Exception;
 
 }
