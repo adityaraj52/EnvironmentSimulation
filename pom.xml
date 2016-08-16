@@ -257,15 +257,13 @@
                     <packageName>environment.dataimport</packageName>
 
                     <sources>
-                        <source>src/main/xsd/query.xsd</source>
-                        <source>src/main/xsd/osp.xsd</source>
+                        <source>src/main</source>
                     </sources>
 
                     <xjcSourceExcludeFilters>
                         <filter implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
                             <patterns>
                                 <pattern>\.java</pattern>
-                                <pattern>\.xml</pattern>
                                 <pattern>\.xsl</pattern>
                             </patterns>
                         </filter>
