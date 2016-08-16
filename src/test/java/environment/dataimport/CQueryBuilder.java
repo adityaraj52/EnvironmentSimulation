@@ -14,7 +14,7 @@ import java.util.Collection;
 /**
  * Created by adityaraj on 28/07/16.
  */
-public class CQueryBuilder implements IQueryBuilder
+public class CQueryBuilder
 {
     private environment.dataimport.Query m_polynomial;
     private String m_queryString;

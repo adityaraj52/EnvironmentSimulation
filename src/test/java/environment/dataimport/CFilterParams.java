@@ -6,7 +6,7 @@ import java.util.HashMap;
  * Created by adityaraj on 11/08/16.
  * */
 
-public class CFilterParams
+public class CFilterParams implements IFilterParams
 {
     /**
      * Define enum for possible tag values
@@ -27,7 +27,6 @@ public class CFilterParams
     private ETags m_tag;
     private ERoperator m_operator;
     private String m_value;
-
 
     private HashMap<ETags, Iosmkey> m_hashTagMapper;
     private HashMap<ERoperator, IoperatorRelational> m_roperatorMapper;
@@ -50,14 +49,13 @@ public class CFilterParams
 
         m_roperatorMapper = new HashMap<ERoperator, IoperatorRelational>();
         this.setHashRoperatorMapper( m_roperatorMapper );
-
     }
 
     /**
      * get tag value
      * @return tag value
      */
-    protected Iosmkey getTag()
+    public Iosmkey getTag()
     {
         return m_hashTagMapper.get( m_tag );
     }
@@ -67,7 +65,7 @@ public class CFilterParams
      * @return operator
      *
      */
-    protected IoperatorRelational getROperator()
+    public IoperatorRelational getROperator()
     {
         return m_roperatorMapper.get( m_operator );
     }
@@ -77,7 +75,7 @@ public class CFilterParams
      * @return value
      *
      */
-    protected String getValue()
+    public String getValue()
     {
         return m_value;
     }
@@ -87,7 +85,7 @@ public class CFilterParams
      *
      * @param p_hashmap sets hash tag mapper
      */
-    protected void setHashTagMapper( final HashMap<ETags, Iosmkey> p_hashmap )
+    public void setHashTagMapper( final HashMap<ETags, Iosmkey> p_hashmap )
     {
         p_hashmap.put( ETags.highway, Iosmkey.HIGHWAY );
         p_hashmap.put( ETags.railways, Iosmkey.RAILWAYS );
@@ -102,7 +100,7 @@ public class CFilterParams
      *
      * @param p_hashmap sets hash tag mapper
      */
-    protected void setHashRoperatorMapper( final HashMap<ERoperator, IoperatorRelational> p_hashmap )
+    public void setHashRoperatorMapper( final HashMap<ERoperator, IoperatorRelational> p_hashmap )
     {
         p_hashmap.put( ERoperator.equals, IoperatorRelational.EQUALS );
         p_hashmap.put( ERoperator.not_equals, IoperatorRelational.NOT_EQUALS );

@@ -3,7 +3,7 @@ package environment.dataimport;
 /**
  * Created by adityaraj on 15/08/16.
  */
-public interface IQueryBuilder
+public interface IQueryBuilder<T extends CFilterParams>
 {
     /**
      * Set a query string
@@ -25,7 +25,7 @@ public interface IQueryBuilder
      * @param p_filterStrings setting filter strings
      * @return CQueryBuilder
      **/
-    public CQueryBuilder setFiltersStream( final CFilterParams... p_filterStrings );
+    public CQueryBuilder setFiltersStream( final T... p_filterStrings );
 
     /**
      * Define rectangle polynomial and set it
