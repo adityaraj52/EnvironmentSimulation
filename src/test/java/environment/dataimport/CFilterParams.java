@@ -8,28 +8,12 @@ import java.util.HashMap;
 
 public class CFilterParams implements IFilterParams
 {
-    /**
-     * Define enum for possible tag values
-     */
-    public enum ETags
-    {
-        highway, railways, waterways, building, junction, tourism
-    }
+    protected ETags m_tag;
+    protected ERoperator m_operator;
+    protected String m_value;
 
-    /**
-     * Define enum for possible relational operators
-     */
-    public enum ERoperator
-    {
-        equals, not_equals
-    }
-
-    private ETags m_tag;
-    private ERoperator m_operator;
-    private String m_value;
-
-    private HashMap<ETags, Iosmkey> m_hashTagMapper;
-    private HashMap<ERoperator, IoperatorRelational> m_roperatorMapper;
+    protected HashMap<ETags, Iosmkey> m_hashTagMapper;
+    protected HashMap<ERoperator, IoperatorRelational> m_roperatorMapper;
 
     /**
      * Default constructor
