@@ -202,8 +202,8 @@ public class CQueryBuilder implements IQueryBuilder
         {
             final IfilterExpression l_filters = new IfilterExpression();
             final IfilterItem l_item = new IfilterItem();
-            l_item.setKey( l_filter.getTag() );
-            l_item.setROperator( l_filter.getROperator() );
+            l_item.setKey( Iosmkey.valueOf( l_filter.getTag() ) );
+            l_item.setROperator( IoperatorRelational.valueOf( l_filter.getROperator() ) );
             l_item.setValue( l_filter.getValue() );
             l_filters.setItem( l_item );
             m_polynomial.getFilter().add( l_filters );

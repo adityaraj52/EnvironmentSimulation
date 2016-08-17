@@ -32,14 +32,18 @@ public class TestCQueryBuilder
 
         System.out.println(
                 l_queryBuilder
-                        //.defineRectangle( 12, 11, 14, 13 )
-                        .defineCircle( 0, 0, 50 )
-                        .defineList( 10, 11, 12, 13, 14, 15, 10, 11 )
-                        .setFiltersStream( new CFilterParams( CFilterParams.ETags.highway, CFilterParams.ERoperator.equals, "primary" ),
-                        new CFilterParams( CFilterParams.ETags.highway, CFilterParams.ERoperator.not_equals, "bus_stop" ) )
+                        .defineRectangle( 12, 11, 14, 13 )
+                        //.defineCircle( 0, 0, 50 )
+                        //.defineList( 10, 11, 12, 13, 14, 15, 10, 11 )
+                        .setFiltersStream( new CFilterParams( CFilterParams.ETags.HIGHWAY, CFilterParams.ERoperator.EQUALS, "primary" ),
+                         new CFilterParams( CFilterParams.ETags.HIGHWAY, CFilterParams.ERoperator.NOT_EQUALS, "bus_stop" ) )
                         .setQueryString()
                         .getQueryString() );
 
+
+
     }
+
+
 
 }
