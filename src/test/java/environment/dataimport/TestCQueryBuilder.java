@@ -38,7 +38,8 @@ public class TestCQueryBuilder
                         //.defineCircle( 0, 0, 50 )
                         //.defineList( 10, 11, 12, 13, 14, 15, 10, 11 )
                         .setFiltersStream( new CFilterParams( CFilterParams.ETags.HIGHWAY, CFilterParams.ERoperator.EQUALS, "primary" ),
-                         new CFilterParams( CFilterParams.ETags.HIGHWAY, CFilterParams.ERoperator.NOT_EQUALS, "bus_stop" ) )
+                                           new CFilterParams( CFilterParams.ETags.HIGHWAY, CFilterParams.ERoperator.NOT_EQUALS, "bus_stop" ),
+                                           new CFilterParams( CFilterParams.ETags.SHOP, CFilterParams.ERoperator.EQUALS, "MCD" ) )
                         .setQueryString()
                         .getQueryString() );
 
