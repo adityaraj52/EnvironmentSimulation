@@ -1,4 +1,4 @@
-package environment.dataimport;
+package environment.osmquerygrammar;
 
 /**
  * Created by adityaraj on 11/08/16.

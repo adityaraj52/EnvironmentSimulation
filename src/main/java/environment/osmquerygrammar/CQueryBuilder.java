@@ -1,4 +1,10 @@
-package environment.dataimport;
+package environment.osmquerygrammar;
+
+import environment.dataimport.IfilterExpression;
+import environment.dataimport.IfilterItem;
+import environment.dataimport.IoperatorRelational;
+import environment.dataimport.Iosmkey;
+import environment.dataimport.Ipolynomial;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.util.JAXBSource;

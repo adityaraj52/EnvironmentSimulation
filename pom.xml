@@ -30,7 +30,7 @@
             <groupId>org.openstreetmap.osmosis</groupId>
             <artifactId>osmosis-tagfilter</artifactId>
             <version>0.45</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <!-- http://mvnrepository.com/artifact/org.openstreetmap.osmosis/osmosis-xml -->
@@ -38,7 +38,7 @@
             <groupId>org.openstreetmap.osmosis</groupId>
             <artifactId>osmosis-xml</artifactId>
             <version>0.45</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <!-- http://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->

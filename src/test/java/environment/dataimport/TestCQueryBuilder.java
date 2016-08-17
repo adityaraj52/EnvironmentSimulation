@@ -1,5 +1,7 @@
 package environment.dataimport;
 
+import environment.osmquerygrammar.CFilterParams;
+import environment.osmquerygrammar.CQueryBuilder;
 import org.junit.Test;
 
 /**
