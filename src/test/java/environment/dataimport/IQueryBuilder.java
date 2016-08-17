@@ -3,14 +3,14 @@ package environment.dataimport;
 /**
  * Created by adityaraj on 15/08/16.
  */
-public interface IQueryBuilder<T extends CFilterParams>
+public interface IQueryBuilder
 {
     /**
      * Set a query string
-     * @return CQueryBuilder
+     * @return IQueryBuilder
      * @throws Exception for making transformation errors
      */
-    public CQueryBuilder setQueryString() throws Exception;
+    public IQueryBuilder setQueryString() throws Exception;
 
     /**
      * Gets the query String
@@ -23,9 +23,9 @@ public interface IQueryBuilder<T extends CFilterParams>
      * Use streams to optmise and remove for loop
      *
      * @param p_filterStrings setting filter strings
-     * @return CQueryBuilder
+     * @return IQueryBuilder
      **/
-    public CQueryBuilder setFiltersStream( final T... p_filterStrings );
+    public IQueryBuilder setFiltersStream( final IFilterParams... p_filterStrings );
 
     /**
      * Define rectangle polynomial and set it
@@ -35,9 +35,9 @@ public interface IQueryBuilder<T extends CFilterParams>
      * @param p_bottomLongitude a parameter for bottomLongitude
      * @param p_topLatitude a parameter for setting topLatitude
      * @param p_topLongitude a parameter for setting top Longitude
-     * @return CQueryBuilder the object itself
+     * @return IQueryBuilder the object itself
      **/
-    public CQueryBuilder defineRectangle( final double p_bottomLatitude, final double p_bottomLongitude,
+    public IQueryBuilder defineRectangle( final double p_bottomLatitude, final double p_bottomLongitude,
                                           final double p_topLatitude, final double p_topLongitude );
 
     /**
@@ -47,18 +47,18 @@ public interface IQueryBuilder<T extends CFilterParams>
      * @param p_centreLatitude a parameter for centre latitude
      * @param p_centreLongitude a parameter for centre longitude
      * @param p_value radius for the circle
-     * @return CQueryBuilder returns the instance itself
+     * @return IQueryBuilder returns the instance itself
      **/
-    public CQueryBuilder defineCircle( final double p_centreLatitude, final double p_centreLongitude, final double p_value );
+    public IQueryBuilder defineCircle( final double p_centreLatitude, final double p_centreLongitude, final double p_value );
 
     /**
      * Set Filters for OSM File (Use Streams to optiimise for loop)
      *
      *
      * @param p_value a parameter for query string
-     * @return CQueryBuilder
+     * @return IQueryBuilder
      **/
-    public CQueryBuilder defineList( final double ... p_value );
+    public IQueryBuilder defineList( final double ... p_value );
 
     /**
      * Set Filters for OSM File (Not working yet.... has to be fixed)

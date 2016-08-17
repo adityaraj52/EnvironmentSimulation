@@ -14,7 +14,7 @@ import java.util.Collection;
 /**
  * Created by adityaraj on 28/07/16.
  */
-public class CQueryBuilder
+public class CQueryBuilder implements IQueryBuilder
 {
     private environment.dataimport.Query m_polynomial;
     private String m_queryString;
@@ -29,13 +29,13 @@ public class CQueryBuilder
 
     /**
      * Set a query string
-     * @return CQueryBuilder
+     * @return IQueryBuilder
      * @throws Exception for making transformation errors
      */
-    public CQueryBuilder setQueryString() throws Exception
+    public IQueryBuilder setQueryString() throws Exception
     {
         m_queryString = this.createTransformer( "src/main/xsd/query.xsl", environment.dataimport.Query.class );
-        return CQueryBuilder.this;
+        return this;
     }
 
     /**
@@ -55,9 +55,9 @@ public class CQueryBuilder
      * @param p_bottomLongitude a parameter for bottomLongitude
      * @param p_topLatitude a parameter for setting topLatitude
      * @param p_topLongitude a parameter for setting top Longitude
-     * @return CQueryBuilder the object itself
+     * @return IQueryBuilder the object itself
      **/
-    public CQueryBuilder defineRectangle( final double p_bottomLatitude, final double p_bottomLongitude,
+    public IQueryBuilder defineRectangle( final double p_bottomLatitude, final double p_bottomLongitude,
                                                                                     final double p_topLatitude, final double p_topLongitude )
     {
         //Specifying the node value... In this test case rectangle
@@ -86,7 +86,7 @@ public class CQueryBuilder
         //Add the polynomial to querystring
         m_polynomial.setPolynomial( l_tempIpolynomial );
 
-        return CQueryBuilder.this;
+        return this;
     }
 
     /**
@@ -96,9 +96,9 @@ public class CQueryBuilder
      * @param p_centreLatitude a parameter for centre latitude
      * @param p_centreLongitude a parameter for centre longitude
      * @param p_value radius for the circle
-     * @return CQueryBuilder returns the instance itself
+     * @return IQueryBuilder returns the instance itself
      **/
-    public CQueryBuilder defineCircle( final double p_centreLatitude, final double p_centreLongitude, final double p_value )
+    public IQueryBuilder defineCircle( final double p_centreLatitude, final double p_centreLongitude, final double p_value )
     {
         final Ipolynomial l_tempIpolynomial = new Ipolynomial();
 
@@ -120,7 +120,7 @@ public class CQueryBuilder
         //Add the polynomial to querystring
         m_polynomial.setPolynomial( l_tempIpolynomial );
 
-        return CQueryBuilder.this;
+        return this;
     }
 
     /**
@@ -128,9 +128,9 @@ public class CQueryBuilder
      *
      *
      * @param p_value a parameter for query string
-     * @return CQueryBuilder
+     * @return IQueryBuilder
      **/
-    public CQueryBuilder defineList( final double ... p_value )
+    public IQueryBuilder defineList( final double ... p_value )
     {
         final Ipolynomial l_tempIpolynomial = new Ipolynomial();
 
@@ -159,7 +159,7 @@ public class CQueryBuilder
             //Add the polynomial to querystring
             m_polynomial.setPolynomial( l_tempIpolynomial );
 
-            return CQueryBuilder.this;
+            return this;
         }
         System.out.println( "\nError: Incorrect number of co-ordinate arguments and/or end co-rodinates must match with starting co-oridnates\n" );
         return null;
@@ -194,11 +194,11 @@ public class CQueryBuilder
      * Set Filters for OSM File Use streams to optmise and remove for loop
      *
      * @param p_filterStrings setting filter strings
-     * @return CQueryBuilder
+     * @return IQueryBuilder
      **/
-    public CQueryBuilder setFiltersStream( final CFilterParams... p_filterStrings )
+    public IQueryBuilder setFiltersStream( final IFilterParams... p_filterStrings )
     {
-        for ( final CFilterParams l_filter: p_filterStrings )
+        for ( final IFilterParams l_filter: p_filterStrings )
         {
             final IfilterExpression l_filters = new IfilterExpression();
             final IfilterItem l_item = new IfilterItem();
@@ -208,6 +208,6 @@ public class CQueryBuilder
             l_filters.setItem( l_item );
             m_polynomial.getFilter().add( l_filters );
         }
-        return CQueryBuilder.this;
+        return this;
     }
 }
