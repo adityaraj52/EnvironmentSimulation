@@ -42,11 +42,5 @@ public class TestCQueryBuilder
                                            new CFilterParams( CFilterParams.ETags.SHOP, CFilterParams.ERoperator.EQUALS, "MCD" ) )
                         .setQueryString()
                         .getQueryString() );
-
-
-
     }
-
-
-
 }
