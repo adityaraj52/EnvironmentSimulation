@@ -20,6 +20,14 @@ import java.util.stream.Collectors;
 public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, String>
 {
     /**
+     * XSLT source
+     */
+    private static final StreamSource XSLT = new StreamSource( CQueryBuilder.class.getResourceAsStream( "/environment/osm/query.xsl" ) );
+    /**
+     * URL base
+     */
+    private static final String APIURL = "http://overpass-api.de/api/interpreter?data=";
+    /**
      * data of the query
      */
     private final Query m_querydata = new Query();
@@ -32,13 +40,13 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
      */
     public CQueryBuilder() throws JAXBException, TransformerConfigurationException
     {
-        super( Query.class, new StreamSource( CQueryBuilder.class.getResourceAsStream( "/environment/osm/query.xsl" ) ) );
+        super( Query.class, XSLT );
     }
 
     @Override
     public final URL query() throws TransformerException, JAXBException, MalformedURLException
     {
-        return new URL( "http://overpass-api.de/api/interpreter?data=" + this.transform( m_querydata ) );
+        return new URL( APIURL + this.transform( m_querydata ) );
     }
 
     @Override
