@@ -98,7 +98,7 @@
                                 <xs:attributeGroup ref="gps"/>
                             </xs:complexType>
                         </xs:element>
-                        <xs:element name="lefttop">
+                        <xs:element name="topleft">
                             <xs:complexType>
                                 <xs:attributeGroup ref="gps"/>
                             </xs:complexType>

@@ -17,6 +17,7 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends E
     /**
      * returns API specific query
      * @return query
+     * @throws Exception any error
      */
     String query() throws Exception;
 
@@ -25,11 +26,11 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends E
      * Use streams to optmise and remove for loop
      *
      * @param p_key filter key
-     * @param p_relation filter relation
+     * @param p_operator filter relation
      * @param p_value value for the filter
      * @return self reference
      **/
-    IQueryBuilder filter( final N p_key, final M p_relation, final D p_value  );
+    IQueryBuilder filter( final N p_key, final M p_operator, final D p_value  );
 
     /**
      * adds a relation to the current filter

@@ -25,20 +25,11 @@
     <!-- defines any project dependencies, the items can be found on http://mvnrepository.com/ -->
     <dependencies>
 
-        <!-- http://mvnrepository.com/artifact/org.openstreetmap.osmosis/osmosis-tagfilter -->
+        <!-- https://mvnrepository.com/artifact/com.codepoetics/protonpack -->
         <dependency>
-            <groupId>org.openstreetmap.osmosis</groupId>
-            <artifactId>osmosis-tagfilter</artifactId>
-            <version>0.45</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- http://mvnrepository.com/artifact/org.openstreetmap.osmosis/osmosis-xml -->
-        <dependency>
-            <groupId>org.openstreetmap.osmosis</groupId>
-            <artifactId>osmosis-xml</artifactId>
-            <version>0.45</version>
-            <scope>provided</scope>
+            <groupId>com.codepoetics</groupId>
+            <artifactId>protonpack</artifactId>
+            <version>1.9</version>
         </dependency>
 
         <!-- http://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
@@ -46,7 +37,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
-            <scope>compile</scope>
         </dependency>
 
         <!-- http://mvnrepository.com/artifact/com.google.guava/guava -->
@@ -61,7 +51,6 @@
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.2.12</version>
-            <scope>provided</scope>
         </dependency>
 
 
