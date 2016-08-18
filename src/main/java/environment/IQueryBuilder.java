@@ -60,6 +60,6 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T>
      * @param p_value pairwise latitude / longitude values of the polygon position
      * @return self reference
      **/
-    public IQueryBuilder polygon( final double ... p_value );
+    IQueryBuilder polygon( final double ... p_value );
 
 }
