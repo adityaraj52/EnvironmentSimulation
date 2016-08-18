@@ -8,6 +8,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamSource;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -30,13 +32,13 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorRela
      */
     public CQueryBuilder() throws JAXBException, TransformerConfigurationException
     {
-        super( Query.class, new StreamSource( "src/main/xsd/query.xsl" ) );
+        super( Query.class, new StreamSource( CQueryBuilder.class.getResourceAsStream( "/environment/osm/query.xsl" ) ) );
     }
 
     @Override
-    public String query() throws TransformerException, JAXBException
+    public URL query() throws TransformerException, JAXBException, MalformedURLException
     {
-        return this.transform( m_querydata );
+        return new URL( "http://overpass-api.de/api/interpreter?data=" + this.transform( m_querydata ) );
     }
 
     @Override

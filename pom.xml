@@ -244,15 +244,6 @@
                     <encoding>${file.encoding}</encoding>
                     <extension>true</extension>
                     <packageName>environment.osm</packageName>
-
-                    <xjcSourceExcludeFilters>
-                        <filter implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
-                            <patterns>
-                                <pattern>\.xsl</pattern>
-                            </patterns>
-                        </filter>
-                    </xjcSourceExcludeFilters>
-
                 </configuration>
             </plugin>
 

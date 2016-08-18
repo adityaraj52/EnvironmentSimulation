@@ -1,6 +1,9 @@
 package environment;
 
 
+import java.net.URL;
+
+
 /**
  * interface of a querybuilder
  *
@@ -17,7 +20,7 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends E
      * @return query
      * @throws Exception any error
      */
-    String query() throws Exception;
+    URL query() throws Exception;
 
     /**
      * sets a filter expression
