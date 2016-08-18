@@ -1,6 +1,9 @@
 package environment.dataimport;
 
-import environment.COSMQueryBuilder;
+import environment.osm.CQueryBuilder;
+import environment.osm.IoperatorBoolean;
+import environment.osm.IoperatorRelational;
+import environment.osm.Iosmkey;
 import org.junit.Test;
 
 /**
@@ -17,7 +20,7 @@ public final class TestCQueryBuilder
     public void buildQuery() throws Exception
     {
         System.out.println(
-                new COSMQueryBuilder()
+                new CQueryBuilder()
                         .rectangle( 12, 11, 14, 13 )
                         //.circle( 0, 0, 50 )
                         //.polygon( 10, 11, 12, 13, 14, 15, 10, 11 )
@@ -27,5 +30,15 @@ public final class TestCQueryBuilder
                         .query()
 
         );
+    }
+
+    /**
+     * main test
+     * @param p_args CLI arguments
+     * @throws Exception is thrown on initializing error
+     */
+    public static void main( final String[] p_args ) throws Exception
+    {
+        new TestCQueryBuilder().buildQuery();
     }
 }

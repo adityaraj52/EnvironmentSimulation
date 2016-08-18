@@ -243,16 +243,11 @@
                 <configuration>
                     <encoding>${file.encoding}</encoding>
                     <extension>true</extension>
-                    <packageName>environment.dataimport</packageName>
-
-                    <sources>
-                        <source>src/main</source>
-                    </sources>
+                    <packageName>environment.osm</packageName>
 
                     <xjcSourceExcludeFilters>
                         <filter implementation="org.codehaus.mojo.jaxb2.shared.filters.pattern.PatternFileFilter">
                             <patterns>
-                                <pattern>\.java</pattern>
                                 <pattern>\.xsl</pattern>
                             </patterns>
                         </filter>

@@ -1,13 +1,8 @@
-package environment;
+package environment.osm;
 
 import com.codepoetics.protonpack.StreamUtils;
-import environment.dataimport.IfilterExpression;
-import environment.dataimport.IfilterItem;
-import environment.dataimport.IoperatorBoolean;
-import environment.dataimport.IoperatorRelational;
-import environment.dataimport.Iosmkey;
-import environment.dataimport.Ipolynomial;
-import environment.dataimport.Query;
+import environment.IQueryBuilder;
+import environment.IXMLQueryBuilder;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerConfigurationException;
@@ -20,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * builder of OSM query
  */
-public final class COSMQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorRelational, IoperatorBoolean, String>
+public final class CQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorRelational, IoperatorBoolean, String>
 {
     /**
      * data of ther query
@@ -33,7 +28,7 @@ public final class COSMQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorR
      * @throws JAXBException is thrown on initializing error
      * @throws TransformerConfigurationException is thrown on XSLT instantiation
      */
-    public COSMQueryBuilder() throws JAXBException, TransformerConfigurationException
+    public CQueryBuilder() throws JAXBException, TransformerConfigurationException
     {
         super( Query.class, new StreamSource( "src/main/xsd/query.xsl" ) );
     }
