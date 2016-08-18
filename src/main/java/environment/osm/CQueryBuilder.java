@@ -8,6 +8,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamSource;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
@@ -44,7 +45,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
     }
 
     @Override
-    public final URL query() throws TransformerException, JAXBException, MalformedURLException
+    public final URL query() throws TransformerException, JAXBException, MalformedURLException, UnsupportedEncodingException
     {
         return new URL( APIURL + this.transform( m_querydata ) );
     }

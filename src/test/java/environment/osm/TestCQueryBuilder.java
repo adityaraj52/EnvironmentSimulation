@@ -17,12 +17,11 @@ public final class TestCQueryBuilder
     {
         System.out.println(
                 new CQueryBuilder()
-                        .rectangle( 12, 11, 14, 13 )
+                        .rectangle( 50.745, 7.17, 50.75, 7.18 )
                         //.circle( 0, 0, 50 )
                         //.polygon( 10, 11, 12, 13, 14, 15, 10, 11 )
-                        .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "primary" )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "bus_stop" )
-                        .filter( Ikey.SHOP, Ioperator.EQUALS, "MCD" )
+                        .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "platform" )
                         .query()
 
         );

@@ -64,6 +64,7 @@
             <xs:enumeration value="railways"/>
             <xs:enumeration value="junction"/>
             <xs:enumeration value="junction"/>
+            <xs:enumeration value="public_transport"/>
         </xs:restriction>
     </xs:simpleType>
 
