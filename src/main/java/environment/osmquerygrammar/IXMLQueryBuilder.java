@@ -47,14 +47,13 @@ public abstract class IXMLQueryBuilder<N extends Enum<?>, M extends Enum<?>, T e
     /**
      * transforms the XML Jaxb structure
      *
-     * @param p_streamSource
-     * @param p_jaxbContext
-     * @return
+     * @param p_data transform dataset
+     * @return result as string
      */
-    protected final String transform( final ) throws TransformerException
+    protected final String transform( final Object p_data ) throws TransformerException, JAXBException
     {
         // Source
-        final JAXBSource l_source = new JAXBSource( m_context, m_polynomial );
+        final JAXBSource l_source = new JAXBSource( m_context, p_data );
 
         // Transform
         final StringWriter l_writer = new StringWriter();

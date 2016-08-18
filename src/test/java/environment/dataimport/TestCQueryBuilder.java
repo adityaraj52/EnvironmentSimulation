@@ -1,7 +1,7 @@
 package environment.dataimport;
 
 import environment.osmquerygrammar.CFilterParams;
-import environment.osmquerygrammar.COSMQueryBuilder;
+import environment.osmquerygrammar.COldOSMQueryBuilder;
 import org.junit.Test;
 
 /**
@@ -17,7 +17,7 @@ public class TestCQueryBuilder
     @Test
     public void buildQuery() throws Exception
     {
-        final COSMQueryBuilder l_queryBuilder = new COSMQueryBuilder();
+        final COldOSMQueryBuilder l_queryBuilder = new COldOSMQueryBuilder();
 
         //Define bounding box in format South, West, North, East
         //Format BottomRight (Latitude, Longitude) LeftTop (Latitude, Longitude)

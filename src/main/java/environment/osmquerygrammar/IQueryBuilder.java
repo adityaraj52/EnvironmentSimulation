@@ -1,5 +1,9 @@
 package environment.osmquerygrammar;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.transform.TransformerException;
+
+
 /**
  * interface of a querybuilder
  *
@@ -14,7 +18,7 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends E
      * returns API specific query
      * @return query
      */
-    String query();
+    String query() throws Exception;
 
     /**
      * Set multiple Filters for OSM File
