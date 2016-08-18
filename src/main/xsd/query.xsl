@@ -166,7 +166,7 @@
 
     <xsl:template match="/query/filter/item">
         <xsl:apply-templates select="key"/>
-        <xsl:apply-templates select="operator"/>
+        <xsl:apply-templates select="expressionoperator"/>
         <xsl:apply-templates select="value"/>
     </xsl:template>
 
@@ -175,7 +175,7 @@
         <xsl:value-of select="."/>
     </xsl:template>
 
-    <xsl:template match="operator">
+    <xsl:template match="expressionoperator">
 
         <xsl:choose>
 
