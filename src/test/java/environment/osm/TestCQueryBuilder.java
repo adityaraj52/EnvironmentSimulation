@@ -1,9 +1,5 @@
-package environment.dataimport;
+package environment.osm;
 
-import environment.osm.CQueryBuilder;
-import environment.osm.IoperatorBoolean;
-import environment.osm.IoperatorRelational;
-import environment.osm.Iosmkey;
 import org.junit.Test;
 
 /**
