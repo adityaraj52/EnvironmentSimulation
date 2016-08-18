@@ -75,6 +75,13 @@ public final class COSMQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorR
                                     final double p_bottomrightlongitude
     )
     {
+        final Ipolynomial.Rectangle.Bottomright l_bottom = new Ipolynomial.Rectangle.Bottomright();
+        l_bottom.setLatitude( p_bottomrightlatitude );
+        l_bottom.setLongitude( p_bottomrightlongitude );
+
+        final Ipolynomial.Rectangle l_rectangle = new Ipolynomial.Rectangle();
+
+
         return this;
     }
 
