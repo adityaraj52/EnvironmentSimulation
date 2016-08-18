@@ -36,13 +36,13 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorRela
     }
 
     @Override
-    public URL query() throws TransformerException, JAXBException, MalformedURLException
+    public final URL query() throws TransformerException, JAXBException, MalformedURLException
     {
         return new URL( "http://overpass-api.de/api/interpreter?data=" + this.transform( m_querydata ) );
     }
 
     @Override
-    public IQueryBuilder filter( final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value )
+    public final IQueryBuilder filter( final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value )
     {
         m_querydata.getFilter().add( this.createfilter( p_key, p_operator, p_value ) );
         return this;
@@ -80,7 +80,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorRela
     }
 
     @Override
-    public IQueryBuilder circle( final double p_latitude, final double p_longitude, final double p_radius )
+    public final IQueryBuilder circle( final double p_latitude, final double p_longitude, final double p_radius )
     {
         final Ipolynomial.Circle.Centre l_center = new Ipolynomial.Circle.Centre();
         l_center.setLatitude( p_latitude );
@@ -98,7 +98,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorRela
     }
 
     @Override
-    public IQueryBuilder rectangle( final double p_topleftlatitude, final double p_topleftlongitude, final double p_bottomrightlatitude,
+    public final IQueryBuilder rectangle( final double p_topleftlatitude, final double p_topleftlongitude, final double p_bottomrightlatitude,
                                     final double p_bottomrightlongitude
     )
     {
@@ -122,7 +122,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorRela
     }
 
     @Override
-    public IQueryBuilder polygon( final double... p_value )
+    public final IQueryBuilder polygon( final double... p_value )
     {
         if ( ( p_value == null ) || ( p_value.length == 0 ) || ( p_value.length % 2 != 0 ) )
             throw new RuntimeException( "number of arguments must be greater than zero and even" );
