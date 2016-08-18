@@ -20,9 +20,9 @@ public final class TestCQueryBuilder
                         .rectangle( 12, 11, 14, 13 )
                         //.circle( 0, 0, 50 )
                         //.polygon( 10, 11, 12, 13, 14, 15, 10, 11 )
-                        .filter( Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "primary" )
-                        .filter( IoperatorBoolean.AND, Iosmkey.HIGHWAY, IoperatorRelational.EQUALS, "bus_stop" )
-                        .filter( Iosmkey.SHOP, IoperatorRelational.EQUALS, "MCD" )
+                        .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "primary" )
+                        .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "bus_stop" )
+                        .filter( Ikey.SHOP, Ioperator.EQUALS, "MCD" )
                         .query()
 
         );

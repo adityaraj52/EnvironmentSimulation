@@ -12,7 +12,7 @@ import java.net.URL;
  * @tparam T enum type of operators between filters
  * @tparam D data type of filter values
  */
-public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends Enum<?>, D>
+public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T>
 {
     /**
      * returns API specific query
@@ -30,18 +30,7 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends E
      * @param p_value value for the filter
      * @return self reference
      **/
-    IQueryBuilder filter( final N p_key, final M p_operator, final D p_value  );
-
-    /**
-     * sets a filter expression
-     *
-     * @param p_filteroperator operator between filters
-     * @param p_key filter key
-     * @param p_operator filter relation
-     * @param p_value value for the filter
-     * @return self reference
-     **/
-    IQueryBuilder filter( final T p_filteroperator, final N p_key, final M p_operator, final D p_value  );
+    IQueryBuilder filter( final N p_key, final M p_operator, final T p_value  );
 
     /**
      * set bounding-box as circle

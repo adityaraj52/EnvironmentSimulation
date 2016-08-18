@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 /**
  * builder of OSM query
  */
-public final class CQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorRelational, IoperatorBoolean, String>
+public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, String>
 {
     /**
      * data of ther query
@@ -42,41 +42,19 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorRela
     }
 
     @Override
-    public final IQueryBuilder filter( final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value )
+    public final IQueryBuilder filter( final Ikey p_key, final Ioperator p_operator, final String p_value )
     {
-        m_querydata.getFilter().add( this.createfilter( p_key, p_operator, p_value ) );
-        return this;
-    }
+        final Ifilteritem l_item = new Ifilteritem();
+        l_item.setKey( p_key );
+        l_item.setOperator( p_operator );
+        l_item.setValue( p_value );
 
-    @Override
-    public final IQueryBuilder filter( final IoperatorBoolean p_filteroperator, final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value
-    )
-    {
-        final IfilterExpression l_filter = this.createfilter( p_key, p_operator, p_value );
-        l_filter.getItem().setFilteroperator( p_filteroperator );
+        final Ifilterexpression l_filter = new Ifilterexpression();
+        l_filter.setItem( l_item );
+
 
         m_querydata.getFilter().add( l_filter );
         return this;
-    }
-
-    /**
-     * creates the filter expression
-     *
-     * @param p_key keys
-     * @param p_operator operator
-     * @param p_value value
-     * @return filter expression
-     */
-    private IfilterExpression createfilter( final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value )
-    {
-        final IfilterItem l_item = new IfilterItem();
-        l_item.setKey( p_key );
-        l_item.setExpressionoperator( p_operator );
-        l_item.setValue( p_value );
-
-        final IfilterExpression l_filter = new IfilterExpression();
-        l_filter.setItem( l_item );
-        return l_filter;
     }
 
     @Override
