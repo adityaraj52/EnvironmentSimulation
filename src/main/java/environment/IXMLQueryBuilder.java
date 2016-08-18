@@ -33,7 +33,7 @@ public abstract class IXMLQueryBuilder<N extends Enum<?>, M extends Enum<?>, T> 
     /**
      * ctor
      *
-     * @param p_class Jaxb class defintion
+     * @param p_class Jaxb class definition
      * @param p_xslt XSLT stream source
      * @throws JAXBException is thrown on Jaxb instantiation
      * @throws TransformerConfigurationException is thrown on XSLT definition
