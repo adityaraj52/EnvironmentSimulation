@@ -53,12 +53,8 @@ public abstract class IXMLQueryBuilder<N extends Enum<?>, M extends Enum<?>, T e
      */
     protected final String transform( final Object p_data ) throws TransformerException, JAXBException
     {
-        // Source
-        final JAXBSource l_source = new JAXBSource( m_context, p_data );
-
-        // Transform
         final StringWriter l_writer = new StringWriter();
-        m_transform.transform( l_source, new StreamResult( l_writer ) );
+        m_transform.transform( new JAXBSource( m_context, p_data ), new StreamResult( l_writer ) );
         return l_writer.toString();
     }
 

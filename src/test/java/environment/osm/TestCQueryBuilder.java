@@ -13,7 +13,7 @@ public final class TestCQueryBuilder
      * @throws Exception on failure
      */
     @Test
-    public void buildQuery() throws Exception
+    public final void buildQuery() throws Exception
     {
         System.out.println(
                 new CQueryBuilder()
