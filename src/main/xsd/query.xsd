@@ -30,7 +30,7 @@
         </xs:annotation>
         <xs:all>
             <xs:element name="key" type="iosmkey"> </xs:element>
-            <xs:element name="r_operator" default="equals" type="ioperator_relational"> </xs:element>
+            <xs:element name="expressionoperator" default="equals" type="ioperator_relational"> </xs:element>
             <xs:element name="value">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -39,11 +39,12 @@
                 </xs:simpleType>
             </xs:element>
         </xs:all>
+        <xs:attribute default="or" name="filteroperator" type="ioperator_boolean"/>
     </xs:complexType>
 
     <xs:simpleType name="ioperator_relational" final="restriction">
         <xs:annotation>
-            <xs:documentation>relational operator for connectingkey_and_value_of_a_filter</xs:documentation>
+            <xs:documentation>relational operator for connecting key and value of a filter</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="equals"/>
@@ -53,7 +54,7 @@
 
     <xs:simpleType name="ioperator_boolean" final="restriction">
         <xs:annotation>
-            <xs:documentation>boolean_operator for connection different filters</xs:documentation>
+            <xs:documentation>boolean operator for connection filters</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="and"/>

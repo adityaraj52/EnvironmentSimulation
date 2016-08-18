@@ -44,7 +44,6 @@
 
 
     <!-- Main Template goes here -->
-
     <xsl:template match="/">
 
         <xsl:text>node</xsl:text>
@@ -60,11 +59,9 @@
     </xsl:template>
 
     <!-- Template for querying polynomial -->
-
     <xsl:template match="/query/polynomial">
 
         <!-- Choose one of the following choices available among list/rectangle/circle -->
-
         <xsl:choose>
 
             <xsl:when test="/query/polynomial/list">
@@ -72,7 +69,6 @@
                 <xsl:text>poly:"</xsl:text>
 
                 <!-- Trimming the string from right end to remove the extra white space to match Overpass QL -->
-
                 <xsl:call-template name="string-rtrim">
                     <xsl:with-param name="string" select="$list_storage"/>
                 </xsl:call-template>
@@ -170,7 +166,7 @@
 
     <xsl:template match="/query/filter/item">
         <xsl:apply-templates select="key"/>
-        <xsl:apply-templates select="r_operator"/>
+        <xsl:apply-templates select="operator"/>
         <xsl:apply-templates select="value"/>
     </xsl:template>
 
@@ -179,7 +175,7 @@
         <xsl:value-of select="."/>
     </xsl:template>
 
-    <xsl:template match="r_operator">
+    <xsl:template match="operator">
 
         <xsl:choose>
 

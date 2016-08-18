@@ -1,4 +1,4 @@
-package environment.osmquerygrammar;
+package environment;
 
 import com.codepoetics.protonpack.StreamUtils;
 import environment.dataimport.IfilterExpression;
@@ -25,17 +25,17 @@ public final class COSMQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorR
     /**
      * data of ther query
      */
-    private final Query m_querydata;
+    private final Query m_querydata = new Query();
 
     /**
      * ctor
      *
-     * @throws JAXBException
+     * @throws JAXBException is thrown on initializing error
+     * @throws TransformerConfigurationException is thrown on XSLT instantiation
      */
-    protected COSMQueryBuilder() throws JAXBException, TransformerConfigurationException
+    public COSMQueryBuilder() throws JAXBException, TransformerConfigurationException
     {
         super( Query.class, new StreamSource( "src/main/xsd/query.xsl" ) );
-        m_querydata = new Query();
     }
 
     @Override
@@ -47,23 +47,39 @@ public final class COSMQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorR
     @Override
     public IQueryBuilder filter( final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value )
     {
-        final IfilterItem l_item = new IfilterItem();
-        l_item.setKey( p_key );
-        l_item.setROperator( p_operator );
-        l_item.setValue( p_value );
+        m_querydata.getFilter().add( this.createfilter( p_key, p_operator, p_value ) );
+        return this;
+    }
 
-        final IfilterExpression l_filter = new IfilterExpression();
-        l_filter.setItem( l_item );
-
+    @Override
+    public final IQueryBuilder filter( final IoperatorBoolean p_filteroperator, final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value
+    )
+    {
+        final IfilterExpression l_filter = this.createfilter( p_key, p_operator, p_value );
+        l_filter.getItem().setFilteroperator( p_filteroperator );
 
         m_querydata.getFilter().add( l_filter );
         return this;
     }
 
-    @Override
-    public IQueryBuilder next( final IoperatorBoolean p_relational )
+    /**
+     * creates the filter expression
+     *
+     * @param p_key keys
+     * @param p_operator operator
+     * @param p_value value
+     * @return filter expression
+     */
+    private IfilterExpression createfilter( final Iosmkey p_key, final IoperatorRelational p_operator, final String p_value )
     {
-        return this;
+        final IfilterItem l_item = new IfilterItem();
+        l_item.setKey( p_key );
+        l_item.setExpressionoperator( p_operator );
+        l_item.setValue( p_value );
+
+        final IfilterExpression l_filter = new IfilterExpression();
+        l_filter.setItem( l_item );
+        return l_filter;
     }
 
     @Override
@@ -111,7 +127,7 @@ public final class COSMQueryBuilder extends IXMLQueryBuilder<Iosmkey, IoperatorR
     @Override
     public IQueryBuilder polygon( final double... p_value )
     {
-        if ( ( p_value == null ) || ( p_value.length == 0) || ( p_value.length % 2 != 0) )
+        if ( ( p_value == null ) || ( p_value.length == 0 ) || ( p_value.length % 2 != 0 ) )
             throw new RuntimeException( "number of arguments must be greater than zero and even" );
 
         final Ipolynomial.List l_polygon = new Ipolynomial.List();

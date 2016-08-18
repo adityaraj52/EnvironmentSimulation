@@ -1,7 +1,4 @@
-package environment.osmquerygrammar;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.transform.TransformerException;
+package environment;
 
 
 /**
@@ -16,14 +13,14 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends E
 {
     /**
      * returns API specific query
+     *
      * @return query
      * @throws Exception any error
      */
     String query() throws Exception;
 
     /**
-     * Set multiple Filters for OSM File
-     * Use streams to optmise and remove for loop
+     * sets a filter expression
      *
      * @param p_key filter key
      * @param p_operator filter relation
@@ -33,12 +30,15 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends E
     IQueryBuilder filter( final N p_key, final M p_operator, final D p_value  );
 
     /**
-     * adds a relation to the current filter
-     * @param p_relational relational operator
+     * sets a filter expression
+     *
+     * @param p_filteroperator operator between filters
+     * @param p_key filter key
+     * @param p_operator filter relation
+     * @param p_value value for the filter
      * @return self reference
-     */
-    IQueryBuilder next( final T p_relational );
-
+     **/
+    IQueryBuilder filter( final T p_filteroperator, final N p_key, final M p_operator, final D p_value  );
 
     /**
      * set bounding-box as circle

@@ -1,4 +1,4 @@
-package environment.osmquerygrammar;
+package environment;
 
 
 import javax.xml.bind.JAXBContext;
@@ -18,7 +18,7 @@ import java.io.StringWriter;
  * base implementation of query builder
  * with XML / XD support
  */
-public abstract class IXMLQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends Enum<?>, D> implements IQueryBuilder<N,M,T,D>
+public abstract class IXMLQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends Enum<?>, D> implements IQueryBuilder<N, M, T, D>
 {
     /**
      * Jaxb marshalling / unmarshalling context
