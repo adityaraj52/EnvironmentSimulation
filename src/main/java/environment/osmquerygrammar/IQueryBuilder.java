@@ -1,75 +1,68 @@
 package environment.osmquerygrammar;
 
 /**
- * Created by adityaraj on 15/08/16.
+ * interface of a querybuilder
+ *
+ * @tparam N enum type of filter keys
+ * @tparam M enum type of filter relations
+ * @tparam T enum type of operators between filters
+ * @tparam D data type of filter values
  */
-public interface IQueryBuilder
+public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T extends Enum<?>, D>
 {
     /**
-     * Set a query string
-     * @return IQueryBuilder
-     * @throws Exception for making transformation errors
+     * returns API specific query
+     * @return query
      */
-    public IQueryBuilder setQueryString() throws Exception;
-
-    /**
-     * Gets the query String
-     * @return String
-     */
-    public String getQueryString();
+    String query();
 
     /**
      * Set multiple Filters for OSM File
      * Use streams to optmise and remove for loop
      *
-     * @param p_filterStrings setting filter strings
-     * @return IQueryBuilder
+     * @param p_key filter key
+     * @param p_relation filter relation
+     * @param p_value value for the filter
+     * @return self reference
      **/
-    public IQueryBuilder setFiltersStream( final IFilterParams... p_filterStrings );
+    IQueryBuilder filter( final N p_key, final M p_relation, final D p_value  );
 
     /**
-     * Define rectangle polynomial and set it
-     *
-     *
-     * @param p_bottomLatitude a parameter for bottomLatitude
-     * @param p_bottomLongitude a parameter for bottomLongitude
-     * @param p_topLatitude a parameter for setting topLatitude
-     * @param p_topLongitude a parameter for setting top Longitude
-     * @return IQueryBuilder the object itself
-     **/
-    public IQueryBuilder defineRectangle( final double p_bottomLatitude, final double p_bottomLongitude,
-                                          final double p_topLatitude, final double p_topLongitude );
+     * adds a relation to the current filter
+     * @param p_relational relational operator
+     * @return self reference
+     */
+    IQueryBuilder next( final T p_relational );
+
 
     /**
-     * Define circle polynomial and set it
+     * set bounding-box as circle
      *
-     *
-     * @param p_centreLatitude a parameter for centre latitude
-     * @param p_centreLongitude a parameter for centre longitude
-     * @param p_value radius for the circle
-     * @return IQueryBuilder returns the instance itself
+     * @param p_latitude latitude
+     * @param p_longitude longitude
+     * @param p_radius radius
+     * @return self reference
      **/
-    public IQueryBuilder defineCircle( final double p_centreLatitude, final double p_centreLongitude, final double p_value );
+    IQueryBuilder circle( final double p_latitude, final double p_longitude, final double p_radius );
 
     /**
-     * Set Filters for OSM File (Use Streams to optiimise for loop)
+     * set bounding-box as a rectangle
      *
-     *
-     * @param p_value a parameter for query string
-     * @return IQueryBuilder
-     **/
-    public IQueryBuilder defineList( final double ... p_value );
+     * @param p_topleftlatitude top-left latitude
+     * @param p_topleftlongitude top-left longitude
+     * @param p_bottomrightlatitude bottom-right latitude
+     * @param p_bottomrightlongitude bottom-right longitude
+     * @return self reference
+     */
+    IQueryBuilder rectangle( final double p_topleftlatitude, final double p_topleftlongitude, final double p_bottomrightlatitude, final double p_bottomrightlongitude );
 
     /**
-     * Set Filters for OSM File (Not working yet.... has to be fixed)
+     * sets the bouning-nox as a polygon
      *
      *
-     * @param p_streamSource a parameter for tag key
-     * @param p_jaxbContext a parameter for query string
-     * @return String
-     * @throws Exception for files
-     *
+     * @param p_value pairwise latitude / longitude values of the polygon position
+     * @return self reference
      **/
-    public String createTransformer( final String p_streamSource, final Class<?> p_jaxbContext ) throws Exception;
+    public IQueryBuilder polygon( final double ... p_value );
 
 }

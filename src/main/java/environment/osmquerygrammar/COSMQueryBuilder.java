@@ -20,7 +20,7 @@ import java.util.Collection;
 /**
  * Created by adityaraj on 28/07/16.
  */
-public class CQueryBuilder implements IQueryBuilder
+public class COSMQueryBuilder implements IQueryBuilder
 {
     private environment.dataimport.Query m_polynomial;
     private String m_queryString;
@@ -28,7 +28,7 @@ public class CQueryBuilder implements IQueryBuilder
     /**
      * querybuilder
      */
-    public CQueryBuilder()
+    public COSMQueryBuilder()
     {
         m_polynomial = new environment.dataimport.Query();
     }
