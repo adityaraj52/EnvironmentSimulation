@@ -9,8 +9,7 @@ import java.net.URL;
  *
  * @tparam N enum type of filter keys
  * @tparam M enum type of filter relations
- * @tparam T enum type of operators between filters
- * @tparam D data type of filter values
+ * @tparam T data type of filter values
  */
 public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T>
 {
