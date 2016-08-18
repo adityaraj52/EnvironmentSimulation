@@ -97,10 +97,10 @@
     <xsl:template match="rectangle">
         <xsl:apply-templates select="bottomright"/>
         <xsl:call-template name="comma"/>
-        <xsl:apply-templates select="lefttop"/>
+        <xsl:apply-templates select="topleft"/>
     </xsl:template>
 
-    <xsl:template match="lefttop">
+    <xsl:template match="topleft">
         <xsl:call-template name="read_coordinate"/>
     </xsl:template>
 
