@@ -8,9 +8,6 @@
 !*.md
 !*.xsd
 !*.xsl
-!*.xml
-!*.osm
-!*.properties
 
 !src/site/*.doxyfile
 !src/site/*.htm*

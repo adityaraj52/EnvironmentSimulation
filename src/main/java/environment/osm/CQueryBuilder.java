@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, String>
 {
     /**
-     * data of ther query
+     * data of the query
      */
     private final Query m_querydata = new Query();
 
