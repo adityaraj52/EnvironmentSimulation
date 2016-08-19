@@ -57,10 +57,11 @@
         <xsl:call-template name="close_small_bracket"/>
 
         <xsl:apply-templates select="/query/filter/item"/>
+
         <xsl:call-template name="semicolon"/>
+
         <xsl:text>out;</xsl:text>
     </xsl:template>
-
 
     <!-- template for querying polynomial -->
     <xsl:template match="/query/polynomial">
@@ -181,13 +182,26 @@
 
 
     <xsl:template match="/query/filter/item">
-        <xsl:apply-templates select="key"/>
-        <xsl:apply-templates select="operator"/>
-        <xsl:apply-templates select="value"/>
+
+        <xsl:choose>
+            <xsl:when test="value/text() = '*' or value/text() = '.'">
+                <xsl:apply-templates select="key"/>
+                <xsl:call-template name="close_big_bracket"/>
+            </xsl:when>
+
+            <xsl:otherwise>
+                <xsl:apply-templates select="key"/>
+                <xsl:apply-templates select="operator"/>
+                <xsl:apply-templates select="value"/>
+            </xsl:otherwise>
+
+        </xsl:choose>
+
     </xsl:template>
 
 
     <xsl:template match="key">
+
         <xsl:call-template name="open_big_bracket"/>
         <xsl:value-of select="."/>
     </xsl:template>
@@ -205,6 +219,10 @@
                 <xsl:value-of select="'!='"/>
             </xsl:when>
 
+            <xsl:when test=". = 'tilde'">
+                <xsl:value-of select="'~'"/>
+            </xsl:when>
+
             <xsl:otherwise>
                 <xsl:value-of select="'='"/>
             </xsl:otherwise>
@@ -217,5 +235,4 @@
         <xsl:value-of select="."/>
         <xsl:call-template name="close_big_bracket"/>
     </xsl:template>
-
 </xsl:stylesheet>
