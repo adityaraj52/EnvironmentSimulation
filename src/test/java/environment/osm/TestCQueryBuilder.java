@@ -6,9 +6,12 @@ import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UncheckedIOException;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -32,6 +35,7 @@ public final class TestCQueryBuilder
     {
         return Stream.of(
 
+            //new URL( "http://overpass-api.de/api/interpreter?data=node(50.745,7.17,50.75,7.18)[highway=\"bus_stop\"][public_transport=\"platform\"];out;" )
 
             new CQueryBuilder()
                 .rectangle( 50.745, 7.17, 50.75, 7.18 )
@@ -56,7 +60,9 @@ public final class TestCQueryBuilder
     @UseDataProvider( "querygenerator" )
     public final void testquery( final URL p_url ) throws IOException
     {
-        System.out.println( p_url.getContent() );
+        System.out.println( MessageFormat.format( ">--- {0} ", p_url ) );
+        new BufferedReader( new InputStreamReader( p_url.openConnection().getInputStream() ) ).lines().forEach( System.out::println );
+        System.out.println();
     }
 
     /**
