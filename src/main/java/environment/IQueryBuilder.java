@@ -14,9 +14,9 @@ import java.net.URL;
 public interface IQueryBuilder<N, M, T>
 {
     /**
-     * returns API specific query
+     * returns API specific url query
      *
-     * @return query
+     * @return query url object
      * @throws Exception any error
      */
     URL url() throws Exception;
