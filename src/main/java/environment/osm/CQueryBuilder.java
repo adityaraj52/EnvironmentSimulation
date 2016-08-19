@@ -46,7 +46,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
     }
 
     @Override
-    public final IQueryBuilder filter( final Ikey p_key, final Ioperator p_operator, final String p_value )
+    public final IQueryBuilder<Ikey, Ioperator, String> filter( final Ikey p_key, final Ioperator p_operator, final String p_value )
     {
         final Ifilteritem l_item = new Ifilteritem();
         l_item.setKey( p_key );
@@ -62,7 +62,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
     }
 
     @Override
-    public final IQueryBuilder circle( final double p_latitude, final double p_longitude, final double p_radius )
+    public final IQueryBuilder<Ikey, Ioperator, String> circle( final double p_latitude, final double p_longitude, final double p_radius )
     {
         final Ipolynomial.Circle.Centre l_center = new Ipolynomial.Circle.Centre();
         l_center.setLatitude( p_latitude );
@@ -80,8 +80,8 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
     }
 
     @Override
-    public final IQueryBuilder rectangle( final double p_topleftlatitude, final double p_topleftlongitude, final double p_bottomrightlatitude,
-                                    final double p_bottomrightlongitude
+    public final IQueryBuilder<Ikey, Ioperator, String> rectangle( final double p_topleftlatitude, final double p_topleftlongitude,
+                                                                   final double p_bottomrightlatitude, final double p_bottomrightlongitude
     )
     {
         final Ipolynomial.Rectangle.Bottomright l_bottom = new Ipolynomial.Rectangle.Bottomright();
@@ -104,7 +104,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
     }
 
     @Override
-    public final IQueryBuilder polygon( final double... p_value )
+    public final IQueryBuilder<Ikey, Ioperator, String> polygon( final double... p_value )
     {
         if ( ( p_value == null ) || ( p_value.length == 0 ) || ( p_value.length % 2 != 0 ) )
             throw new RuntimeException( "number of arguments must be greater than zero and even" );

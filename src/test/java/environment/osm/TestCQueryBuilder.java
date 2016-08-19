@@ -60,13 +60,13 @@ public final class TestCQueryBuilder
     @UseDataProvider( "querygenerator" )
     public final void testquery( final URL p_url ) throws IOException
     {
-        System.out.println( MessageFormat.format( ">--- {0} ", p_url ) );
+        System.out.println( MessageFormat.format( ">>=== {0} ", p_url ) );
 
         final InputStreamReader l_stream = new InputStreamReader( p_url.openConnection().getInputStream() );
         new BufferedReader( l_stream ).lines().forEach( System.out::println );
         l_stream.close();
 
-        System.out.println();
+        System.out.println( "\n" );
     }
 
     /**

@@ -18,7 +18,7 @@ import java.io.StringWriter;
  * base implementation of query builder
  * with XML / XD support
  */
-public abstract class IXMLQueryBuilder<N extends Enum<?>, M extends Enum<?>, T> implements IQueryBuilder<N, M, T>
+public abstract class IXMLQueryBuilder<N, M, T> implements IQueryBuilder<N, M, T>
 {
     /**
      * Jaxb marshalling / unmarshalling context

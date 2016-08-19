@@ -11,7 +11,7 @@ import java.net.URL;
  * @tparam M enum type of filter relations
  * @tparam T data type of filter values
  */
-public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T>
+public interface IQueryBuilder<N, M, T>
 {
     /**
      * returns API specific query
@@ -29,7 +29,7 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T>
      * @param p_value value for the filter
      * @return self reference
      **/
-    IQueryBuilder filter( final N p_key, final M p_operator, final T p_value  );
+    IQueryBuilder<N, M, T> filter( final N p_key, final M p_operator, final T p_value  );
 
     /**
      * set bounding-box as circle
@@ -39,7 +39,7 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T>
      * @param p_radius radius
      * @return self reference
      **/
-    IQueryBuilder circle( final double p_latitude, final double p_longitude, final double p_radius );
+    IQueryBuilder<N, M, T> circle( final double p_latitude, final double p_longitude, final double p_radius );
 
     /**
      * set bounding-box as a rectangle
@@ -50,7 +50,8 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T>
      * @param p_bottomrightlongitude bottom-right longitude
      * @return self reference
      */
-    IQueryBuilder rectangle( final double p_topleftlatitude, final double p_topleftlongitude, final double p_bottomrightlatitude, final double p_bottomrightlongitude );
+    IQueryBuilder<N, M, T> rectangle( final double p_topleftlatitude, final double p_topleftlongitude,
+                                      final double p_bottomrightlatitude, final double p_bottomrightlongitude );
 
     /**
      * sets the bouning-nox as a polygon
@@ -59,6 +60,6 @@ public interface IQueryBuilder<N extends Enum<?>, M extends Enum<?>, T>
      * @param p_value pairwise latitude / longitude values of the polygon position
      * @return self reference
      **/
-    IQueryBuilder polygon( final double ... p_value );
+    IQueryBuilder<N, M, T> polygon( final double ... p_value );
 
 }
