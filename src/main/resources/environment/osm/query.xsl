@@ -58,6 +58,7 @@
 
         <xsl:apply-templates select="/query/filter/item"/>
         <xsl:call-template name="semicolon"/>
+        <xsl:text>out;</xsl:text>
     </xsl:template>
 
 
@@ -100,9 +101,9 @@
 
 
     <xsl:template match="rectangle">
-        <xsl:apply-templates select="bottomright"/>
-        <xsl:call-template name="comma"/>
         <xsl:apply-templates select="topleft"/>
+        <xsl:call-template name="comma"/>
+        <xsl:apply-templates select="bottomright"/>
     </xsl:template>
 
 
