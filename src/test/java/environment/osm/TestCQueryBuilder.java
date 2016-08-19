@@ -41,7 +41,7 @@ public final class TestCQueryBuilder
                 .rectangle( 50.745, 7.17, 50.75, 7.18 )
                 .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "bus_stop" )
                 .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "platform" )
-                .query()
+                .url()
 
             // @todo put for each OSM key and a combination of two different keys and
             // each bounding-box a new query-builder here (at least ( 10 keys + 5 key-pairs ) * 3 bounding-boxes = 45 test-cases,

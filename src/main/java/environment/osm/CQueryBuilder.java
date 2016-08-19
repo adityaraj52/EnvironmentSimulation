@@ -40,7 +40,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
     }
 
     @Override
-    public final URL query() throws TransformerException, JAXBException, MalformedURLException
+    public final URL url() throws TransformerException, JAXBException, MalformedURLException
     {
         return new URL( "http://overpass-api.de/api/interpreter?data=" + this.transform( m_querydata ) );
     }

@@ -19,7 +19,7 @@ public interface IQueryBuilder<N, M, T>
      * @return query
      * @throws Exception any error
      */
-    URL query() throws Exception;
+    URL url() throws Exception;
 
     /**
      * sets a filter expression
