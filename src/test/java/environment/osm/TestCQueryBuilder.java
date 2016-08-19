@@ -39,7 +39,8 @@ public final class TestCQueryBuilder
                 .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "platform" )
                 .query()
 
-            // @todo put for each OSM key and a combination of two different keys and each bounding-box a new query-builder here (at least ( 9 keys + 4 key-pairs ) * 3 bounding-boxes = 39 test-cases
+            // @todo put for each OSM key and a combination of two different keys and
+            // each bounding-box a new query-builder here (at least ( 9 keys + 4 key-pairs ) * 3 bounding-boxes = 39 test-cases
 
 
         ).toArray();
