@@ -61,7 +61,11 @@ public final class TestCQueryBuilder
     public final void testquery( final URL p_url ) throws IOException
     {
         System.out.println( MessageFormat.format( ">--- {0} ", p_url ) );
-        new BufferedReader( new InputStreamReader( p_url.openConnection().getInputStream() ) ).lines().forEach( System.out::println );
+
+        final InputStreamReader l_stream = new InputStreamReader( p_url.openConnection().getInputStream() );
+        new BufferedReader( l_stream ).lines().forEach( System.out::println );
+        l_stream.close();
+
         System.out.println();
     }
 
