@@ -26,7 +26,9 @@
 
     <xs:complexType name="ifilteritem" final="#all">
         <xs:annotation>
-            <xs:documentation>defines a single filter item</xs:documentation>
+            <xs:documentation>defines a single filter item, see
+                http://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL
+            </xs:documentation>
         </xs:annotation>
         <xs:all>
             <xs:element name="key" type="ikey"> </xs:element>
@@ -43,11 +45,15 @@
 
     <xs:simpleType name="ioperator" final="restriction">
         <xs:annotation>
-            <xs:documentation>relational operator for connecting key and value of a filter</xs:documentation>
+            <xs:documentation>relational operator for connecting key and value of a
+                filter
+            </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
             <xs:enumeration value="equals"/>
             <xs:enumeration value="not equals"/>
+            <xs:enumeration value = "regexpr equals" />
+            <xs:enumeration value = "regexpr not equals" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -64,6 +70,7 @@
             <xs:enumeration value="railways"/>
             <xs:enumeration value="junction"/>
             <xs:enumeration value="junction"/>
+            <xs:enumeration value = "historic" />
             <xs:enumeration value="public_transport"/>
         </xs:restriction>
     </xs:simpleType>

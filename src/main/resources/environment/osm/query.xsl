@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    exclude-result-prefixes="xs">
+<xsl:stylesheet xmlns:xsl = "http://www.w3.org/1999/XSL/Transform" xmlns:xs = "http://www.w3.org/2001/XMLSchema"
+                version = "1.0" exclude-result-prefixes = "xs">
 
-    <!-- General templates for the follwoing name related Symbols -->
+    <!-- transform to Overpass-Query-Language http://wiki.openstreetmap.org/wiki/Overpass_API -->
+
+
+    <!-- General templates for the follwoing name related symbols -->
     <xsl:template name="comma">
         <xsl:text>,</xsl:text>
     </xsl:template>
@@ -33,7 +35,7 @@
     </xsl:template>
 
 
-    <!-- Variable declarations goes here -->
+    <!-- variable declarations goes here -->
     <xsl:variable name="list_storage">
         <xsl:apply-templates select="query/polynomial/list/position"/>
     </xsl:variable>
@@ -43,7 +45,7 @@
     </xsl:variable>
 
 
-    <!-- Main Template goes here -->
+    <!-- main Template goes here -->
     <xsl:template match="/">
 
         <xsl:text>node</xsl:text>
@@ -58,17 +60,18 @@
         <xsl:call-template name="semicolon"/>
     </xsl:template>
 
-    <!-- Template for querying polynomial -->
+
+    <!-- template for querying polynomial -->
     <xsl:template match="/query/polynomial">
 
-        <!-- Choose one of the following choices available among list/rectangle/circle -->
+        <!-- choose one of the following choices available among list/rectangle/circle -->
         <xsl:choose>
 
             <xsl:when test="/query/polynomial/list">
 
                 <xsl:text>poly:"</xsl:text>
 
-                <!-- Trimming the string from right end to remove the extra white space to match Overpass QL -->
+                <!-- trimming the string from right end to remove the extra white space to match overpass ql -->
                 <xsl:call-template name="string-rtrim">
                     <xsl:with-param name="string" select="$list_storage"/>
                 </xsl:call-template>
@@ -87,6 +90,7 @@
         </xsl:choose>
     </xsl:template>
 
+
     <xsl:template match="list/position">
 
         <xsl:call-template name="read_coordinate_with_spaces"/>
@@ -94,19 +98,23 @@
 
     </xsl:template>
 
+
     <xsl:template match="rectangle">
         <xsl:apply-templates select="bottomright"/>
         <xsl:call-template name="comma"/>
         <xsl:apply-templates select="topleft"/>
     </xsl:template>
 
+
     <xsl:template match="topleft">
         <xsl:call-template name="read_coordinate"/>
     </xsl:template>
 
+
     <xsl:template match="bottomright">
         <xsl:call-template name="read_coordinate"/>
     </xsl:template>
+
 
     <xsl:template match="circle">
         <xsl:apply-templates select="centre"/>
@@ -114,13 +122,16 @@
         <xsl:apply-templates select="radius"/>
     </xsl:template>
 
+
     <xsl:template match="centre">
         <xsl:call-template name="read_coordinate"/>
     </xsl:template>
 
+
     <xsl:template match="radius">
         <xsl:value-of select="."/>
     </xsl:template>
+
 
     <xsl:template name="read_coordinate">
         <xsl:apply-templates select="@latitude"/>
@@ -128,19 +139,23 @@
         <xsl:apply-templates select="@longitude"/>
     </xsl:template>
 
+
     <xsl:template name="read_coordinate_with_spaces">
         <xsl:apply-templates select="@latitude"/>
         <xsl:call-template name="whitespace"/>
         <xsl:apply-templates select="@longitude"/>
     </xsl:template>
 
+
     <xsl:template match="@latitude">
         <xsl:value-of select="."/>
     </xsl:template>
 
+
     <xsl:template match="@longitude">
         <xsl:value-of select="."/>
     </xsl:template>
+
 
     <xsl:template name="string-rtrim">
         <xsl:param name="string"/>
@@ -148,7 +163,7 @@
 
         <xsl:variable name="length" select="string-length($string)"/>
 
-        <xsl:if test="$length &gt; 0">
+        <xsl:if test = "$length > 0">
             <xsl:choose>
                 <xsl:when test="contains($trim, substring($string, $length, 1))">
                     <xsl:call-template name="string-rtrim">
@@ -170,10 +185,12 @@
         <xsl:apply-templates select="value"/>
     </xsl:template>
 
+
     <xsl:template match="key">
         <xsl:call-template name="open_big_bracket"/>
         <xsl:value-of select="."/>
     </xsl:template>
+
 
     <xsl:template match="operator">
 
