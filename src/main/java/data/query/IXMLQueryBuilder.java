@@ -1,4 +1,4 @@
-package environment;
+package data.query;
 
 
 import javax.xml.bind.JAXBContext;

@@ -1,4 +1,4 @@
-package environment.osm;
+package data.query.osm;
 
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;

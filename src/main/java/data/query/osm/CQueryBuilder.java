@@ -1,8 +1,8 @@
-package environment.osm;
+package data.query.osm;
 
 import com.codepoetics.protonpack.StreamUtils;
-import environment.IQueryBuilder;
-import environment.IXMLQueryBuilder;
+import query.IQueryBuilder;
+import query.IXMLQueryBuilder;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerConfigurationException;
@@ -37,7 +37,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
      */
     public CQueryBuilder( final ECountry p_county ) throws JAXBException, TransformerConfigurationException
     {
-        super( Query.class, new StreamSource( CQueryBuilder.class.getResourceAsStream( "/environment/osm/query.xsl" ) ) );
+        super( Query.class, new StreamSource( CQueryBuilder.class.getResourceAsStream( "/data/osm/query.xsl" ) ) );
         m_country = p_county;
     }
 
