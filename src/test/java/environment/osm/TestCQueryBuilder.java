@@ -22,6 +22,10 @@ import java.util.stream.Stream;
 @RunWith( DataProviderRunner.class )
 public final class TestCQueryBuilder
 {
+    /**
+     * country code for query builder
+     */
+    private static final CQueryBuilder.ECountry COUNTRY = CQueryBuilder.ECountry.FR;
 
     /**
      * query generator for defining filter queries
