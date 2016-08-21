@@ -4,7 +4,6 @@ import com.codepoetics.protonpack.StreamUtils;
 import data.query.IQueryBuilder;
 import data.query.IXMLQueryBuilder;
 
-
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
