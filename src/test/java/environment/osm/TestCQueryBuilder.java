@@ -46,23 +46,25 @@ public final class TestCQueryBuilder
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
-                        .rectangle( 50.745, 7.17, 50.75, 7.18 )
-                        //.circle( 10000, 50.745, 7.17 )
+                        //.rectangle( 50.745, 7.17, 50.75, 7.18 )
+                        .circle( 10000, 50.745, 7.17 )
+
                         //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "." )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "*" )
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
-                        //.rectangle( 50.745, 7.17, 50.75, 7.18 )
-                        .circle( 800, 50.745, 7.17 )
+                        .polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
+                        //.rectangle( 50.745, 7.17, 50.75, 8.18 )
+                        //.circle( 800, 50.745, 7.17 )
                         //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "." )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "." )
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
-                        .rectangle( 50.74794, 7.17, 50.75, 7.17333 )
+                        .rectangle( 0.74794, 0.17, 89, 89.17333 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "residential" )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "stop_area" )
                         .filter( Ikey.RAILWAYS, Ioperator.NOT_EQUALS, "light_rail" )

@@ -1,6 +1,5 @@
 package environment.osm;
 
-import com.codepoetics.protonpack.StreamUtils;
 import environment.IQueryBuilder;
 import environment.IXMLQueryBuilder;
 
@@ -10,8 +9,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamSource;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 /**
@@ -108,6 +107,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
     @Override
     public final IQueryBuilder<Ikey, Ioperator, String> polygon( final double... p_value )
     {
+        /*
         if ( ( p_value == null ) || ( p_value.length == 0 ) || ( p_value.length % 2 != 0 ) )
             throw new RuntimeException( "number of arguments must be greater than zero and even" );
 
@@ -127,6 +127,36 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
         final Ipolynomial l_polynomial = new Ipolynomial();
         l_polynomial.setList( l_polygon );
         m_querydata.setPolynomial( l_polynomial );
+        return this;
+        */
+
+        if ( ( p_value == null ) || ( p_value.length == 0 ) || ( p_value.length % 2 != 0 ) )
+            throw new RuntimeException( "number of arguments must be greater than zero and even" );
+
+        final Ipolynomial l_tempIpolynomial = new Ipolynomial();
+        final Ipolynomial.List l_polygon = new Ipolynomial.List();
+        final Ipolynomial.List l_list = new Ipolynomial.List();
+        final Collection<Ipolynomial.List.Position> l_positionCollection = new ArrayList<>();
+
+
+        //l_positionCollection.parallelStream().filter()
+        for ( int i = 0; i < p_value.length; i += 2 )
+        {
+            //Set Position Cordinates in terms of latitudes and longitudes
+            final Ipolynomial.List.Position l_position = new Ipolynomial.List.Position();
+            l_position.setLatitude( p_value[i] );
+            l_position.setLongitude( p_value[i + 1] );
+            l_positionCollection.add( l_position );
+        }
+        //Add the positions to collection list
+        l_list.getPosition().addAll( l_positionCollection );
+
+        //Add list to polynomial
+        l_tempIpolynomial.setList( l_list );
+
+        //Add the polynomial to querystring
+        m_querydata.setPolynomial( l_tempIpolynomial );
+
         return this;
     }
 
