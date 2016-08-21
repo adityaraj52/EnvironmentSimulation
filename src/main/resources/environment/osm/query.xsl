@@ -119,6 +119,7 @@
 
 
     <xsl:template match="circle">
+        <xsl:text>around:</xsl:text>
         <xsl:apply-templates select="centre"/>
         <xsl:call-template name="comma"/>
         <xsl:apply-templates select="radius"/>
@@ -215,11 +216,20 @@
                 <xsl:value-of select="'='"/>
             </xsl:when>
 
+            <xsl:when test=". = 'regexpr not equals'">
+                <xsl:value-of select="'!~'"/>
+            </xsl:when>
+
+            <xsl:when test=". = 'regexpr equals'">
+                <xsl:value-of select="'~'"/>
+            </xsl:when>
+
             <xsl:when test=". = 'not equals'">
                 <xsl:value-of select="'!='"/>
             </xsl:when>
 
-            <xsl:when test=". = 'tilde'">
+
+            <xsl:when test=". = ''">
                 <xsl:value-of select="'~'"/>
             </xsl:when>
 
@@ -232,7 +242,9 @@
     </xsl:template>
 
     <xsl:template match="value">
+        <xsl:text>"</xsl:text>
         <xsl:value-of select="."/>
+        <xsl:text>"</xsl:text>
         <xsl:call-template name="close_big_bracket"/>
     </xsl:template>
 </xsl:stylesheet>
