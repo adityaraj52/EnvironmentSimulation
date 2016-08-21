@@ -101,7 +101,7 @@ public final class TestCQueryBuilder
                         .url(),
 
                 new CQueryBuilder( COUNTRY )
-                        .rectangle( 50, 7.17, 50.75, 7.17333 )
+                        .rectangle( 50, 7.17, 50.75, 7.19 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "living_street" )
                         .filter( Ikey.BUILDING, Ioperator.NOT_EQUALS, "hotel" )
                         .filter( Ikey.RAILWAYS, Ioperator.EQUALS, "rail" )
