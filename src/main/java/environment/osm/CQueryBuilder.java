@@ -145,7 +145,6 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
     public enum ECountry
     {
         DE( "http://overpass-api.de/api/interpreter?data=" ),
-        RU( "http://overpass.osm.rambler.ru/cgi/interpreter?data=" ),
         FR( "http://api.openstreetmap.fr/oapi/interpreter?data=" ),
         CH( "http://overpass.osm.ch/api/interpreter?data=" );
 
@@ -154,13 +153,18 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
          */
         private final String m_url;
 
+        /**
+         * ctor
+         *
+         * @param p_url endpoint url
+         */
         ECountry( final String p_url )
         {
             m_url = p_url;
         }
 
         /**
-         * returns the url
+         * returns the endpoint url
          *
          * @return url as string
          */
