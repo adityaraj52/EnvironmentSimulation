@@ -250,7 +250,6 @@
                 </executions>
                 <configuration>
                     <schemaDirectory>src/main/xsd</schemaDirectory>
-                    <generateDirectory>target/generated-sources/jaxb</generateDirectory>
                     <schemaIncludes>
                         <include>**/*.xsd</include>
                     </schemaIncludes>
