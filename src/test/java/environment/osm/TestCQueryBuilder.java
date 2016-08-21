@@ -35,8 +35,6 @@ public final class TestCQueryBuilder
     {
         return Stream.of(
 
-                new URL( "http://api.openstreetmap.fr/oapi/interpreter?data=node(poly:%2250.7%207.1%2050.7%207.2%2050.75%207.15%22)[highway][public_transport];out;" ),
-
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
                         //.rectangle( 50.745, 7.17, 50.75, 7.18 )
                         .circle( 10000, 50.745, 7.17 )
@@ -48,10 +46,9 @@ public final class TestCQueryBuilder
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
                         //.rectangle( 50.745, 7.17, 50.75, 7.18 )
                         .circle( 10000, 50.745, 7.17 )
-
                         //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "." )
-                        .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "*" )
+                        .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.REGEXPR_EQUALS, "plat" )
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
@@ -60,7 +57,7 @@ public final class TestCQueryBuilder
                         //.circle( 800, 50.745, 7.17 )
                         //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "." )
-                        .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "." )
+                        .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.REGEXPR_EQUALS, "form" )
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
@@ -117,21 +114,18 @@ public final class TestCQueryBuilder
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
-                        .rectangle( 45.74, 3.1581, 50.7565, 7.1777 )
+                        .rectangle( 5.74, 3.1581, 50.7565, 77.1777 )
                         .filter( Ikey.HIGHWAY, Ioperator.NOT_EQUALS, "road" )
                         .filter( Ikey.BUILDING, Ioperator.EQUALS, "detached" )
                         .filter( Ikey.RAILWAYS, Ioperator.EQUALS, "preserved" )
                         .filter( Ikey.TOURISM, Ioperator.NOT_EQUALS, "viewpoint" )
                         .url()
-
-
                 // @todo put for each OSM key and a combination of two different keys and
                 // each bounding-box a new query-builder here (at least ( 10 keys + 5 key-pairs ) * 3 bounding-boxes = 45 test-cases,
                 // mix-up with different operator like equals / not-equals / regular-expression-equals / regular-expression-not-equals, so
                 // each operator should be used
         ).toArray();
     }
-
 
     /**
      * query testing
