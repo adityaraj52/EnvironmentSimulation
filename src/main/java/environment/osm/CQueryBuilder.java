@@ -20,10 +20,6 @@ import java.util.stream.Collectors;
 public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, String>
 {
     /**
-     * XSLT source
-     */
-    private static final StreamSource XSLT = new StreamSource( CQueryBuilder.class.getResourceAsStream( "/environment/osm/query.xsl" ) );
-    /**
      * contry specific url
      */
     private final ECountry m_country;
@@ -41,7 +37,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
      */
     public CQueryBuilder( final ECountry p_county ) throws JAXBException, TransformerConfigurationException
     {
-        super( Query.class, XSLT );
+        super( Query.class, new StreamSource( CQueryBuilder.class.getResourceAsStream( "/environment/osm/query.xsl" ) ) );
         m_country = p_county;
     }
 

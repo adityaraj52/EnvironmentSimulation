@@ -142,6 +142,7 @@ public final class TestCQueryBuilder
                     .filter( Ikey.RAILWAYS, Ioperator.NOT_EQUALS, "abandoned" )
                     .filter( Ikey.TOURISM, Ioperator.EQUALS, "yes" )
                     .url()
+
         ).toArray();
     }
 
