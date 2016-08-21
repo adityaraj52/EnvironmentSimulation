@@ -35,7 +35,7 @@ public final class TestCQueryBuilder
     {
         return Stream.of(
 
-                //new URL( "http://overpass-api.de/api/interpreter?data=node(50.745,7.17,50.75,7.18)[highway=\"bus_stop\"][public_transport=\"platform\"];out;" ),
+                new URL( "http://api.openstreetmap.fr/oapi/interpreter?data=node(poly:%2250.7%207.1%2050.7%207.2%2050.75%207.15%22)[highway][public_transport];out;" ),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
                         //.rectangle( 50.745, 7.17, 50.75, 7.18 )
