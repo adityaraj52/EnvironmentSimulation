@@ -120,7 +120,7 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
                            l_position.setLongitude( i.get( 1 ) );
                            return l_position;
                        } )
-                       .collect( Collectors.toSet() )
+                       .collect( Collectors.toList() )
         );
 
 
