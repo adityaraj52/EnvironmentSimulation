@@ -1,6 +1,5 @@
 package data.query;
 
-
 import java.net.URL;
 
 
@@ -17,6 +16,7 @@ public interface IQueryBuilder<N, M, T>
      * returns API specific url query
      *
      * @return query url object
+     *
      * @throws Exception any error
      */
     URL url() throws Exception;
@@ -29,7 +29,7 @@ public interface IQueryBuilder<N, M, T>
      * @param p_value value for the filter
      * @return self reference
      **/
-    IQueryBuilder<N, M, T> filter( final N p_key, final M p_operator, final T p_value  );
+    IQueryBuilder<N, M, T> filter( final N p_key, final M p_operator, final T p_value );
 
     /**
      * set bounding-box as circle
@@ -51,15 +51,15 @@ public interface IQueryBuilder<N, M, T>
      * @return self reference
      */
     IQueryBuilder<N, M, T> rectangle( final double p_topleftlatitude, final double p_topleftlongitude,
-                                      final double p_bottomrightlatitude, final double p_bottomrightlongitude );
+                                      final double p_bottomrightlatitude, final double p_bottomrightlongitude
+    );
 
     /**
      * sets the bouning-nox as a polygon
      *
-     *
      * @param p_value pairwise latitude / longitude values of the polygon position
      * @return self reference
      **/
-    IQueryBuilder<N, M, T> polygon( final double ... p_value );
+    IQueryBuilder<N, M, T> polygon( final double... p_value );
 
 }

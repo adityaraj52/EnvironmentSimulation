@@ -1,6 +1,6 @@
-package model.osm.element;
+package data.model.osm.element;
 
-import model.IModel;
+import data.model.IModel;
 
 
 /**

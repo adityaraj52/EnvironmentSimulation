@@ -7,6 +7,7 @@ import java.net.URL;
 
 /**
  * interface to represent a model factory
+ *
  * @tparam T model
  */
 public interface IModelFactory<T extends IModel>
@@ -17,6 +18,7 @@ public interface IModelFactory<T extends IModel>
      *
      * @param p_url url to read model
      * @return model
+     *
      * @throws IOException is thrown on io errors
      * @throws JAXBException is thrown on jaxb error
      */

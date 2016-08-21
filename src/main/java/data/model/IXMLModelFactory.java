@@ -9,6 +9,7 @@ import java.net.URL;
 
 /**
  * abstract for XML model factory
+ *
  * @tparam N unmarshalling model
  * @tparam T result model
  */
@@ -21,6 +22,7 @@ public abstract class IXMLModelFactory<N, T extends IModel> implements IModelFac
 
     /**
      * ctor
+     *
      * @param p_class context class
      * @throws JAXBException is thrown on instantiation error
      */
