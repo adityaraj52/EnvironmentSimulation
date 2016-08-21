@@ -10,6 +10,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamSource;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,10 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
      */
     private static final StreamSource XSLT = new StreamSource( CQueryBuilder.class.getResourceAsStream( "/environment/osm/query.xsl" ) );
     /**
+     * contry specific url
+     */
+    private final ECountry m_country;
+    /**
      * data of the query
      */
     private final Query m_querydata = new Query();
@@ -31,18 +36,20 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
     /**
      * ctor
      *
+     * @param p_county country defintition
      * @throws JAXBException is thrown on initializing error
      * @throws TransformerConfigurationException is thrown on XSLT instantiation
      */
-    public CQueryBuilder() throws JAXBException, TransformerConfigurationException
+    public CQueryBuilder( final ECountry p_county ) throws JAXBException, TransformerConfigurationException
     {
         super( Query.class, XSLT );
+        m_country = p_county;
     }
 
     @Override
     public final URL url() throws TransformerException, JAXBException, MalformedURLException
     {
-        return new URL( "http://overpass-api.de/api/interpreter?data=" + this.transform( m_querydata ) );
+        return new URL( m_country.url() + this.transform( m_querydata ) );
     }
 
     @Override
@@ -126,5 +133,40 @@ public final class CQueryBuilder extends IXMLQueryBuilder<Ikey, Ioperator, Strin
         l_polynomial.setList( l_polygon );
         m_querydata.setPolynomial( l_polynomial );
         return this;
+    }
+
+
+    /**
+     * country codes for
+     * contry specific url
+     *
+     * @see http://wiki.openstreetmap.org/wiki/Overpass_API
+     */
+    public enum ECountry
+    {
+        DE( "http://overpass-api.de/api/interpreter?data=" ),
+        RU( "http://overpass.osm.rambler.ru/cgi/interpreter?data=" ),
+        FR( "http://api.openstreetmap.fr/oapi/interpreter?data=" ),
+        CH( "http://overpass.osm.ch/api/interpreter?data=" );
+
+        /**
+         * server url
+         */
+        private final String m_url;
+
+        ECountry( final String p_url )
+        {
+            m_url = p_url;
+        }
+
+        /**
+         * returns the url
+         *
+         * @return url as string
+         */
+        public final String url()
+        {
+            return m_url;
+        }
     }
 }
