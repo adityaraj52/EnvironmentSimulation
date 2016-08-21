@@ -34,6 +34,9 @@
         <xsl:text>;</xsl:text>
     </xsl:template>
 
+    <xsl:template name="encode_space">
+        <xsl:text>%20</xsl:text>
+    </xsl:template>
 
     <!-- variable declarations goes here -->
     <xsl:variable name="list_storage">
@@ -44,6 +47,9 @@
         <xsl:call-template name="whitespace"/>
     </xsl:variable>
 
+    <xsl:variable name="encoded_whitespace">
+        <xsl:call-template name="encode_space"/>
+    </xsl:variable>
 
     <!-- main Template goes here -->
     <xsl:template match="/">
@@ -71,13 +77,13 @@
 
             <xsl:when test="/query/polynomial/list">
 
-                <xsl:text>poly:"</xsl:text>
+                <xsl:text>poly:%22</xsl:text>
 
                 <!-- trimming the string from right end to remove the extra white space to match overpass ql -->
                 <xsl:call-template name="string-rtrim">
                     <xsl:with-param name="string" select="$list_storage"/>
                 </xsl:call-template>
-                <xsl:text>"</xsl:text>
+                <xsl:text>%22</xsl:text>
 
             </xsl:when>
 
@@ -96,7 +102,7 @@
     <xsl:template match="list/position">
 
         <xsl:call-template name="read_coordinate_with_spaces"/>
-        <xsl:call-template name="whitespace"/>
+        <xsl:call-template name="encode_space"/>
 
     </xsl:template>
 
@@ -119,9 +125,10 @@
 
 
     <xsl:template match="circle">
-        <xsl:apply-templates select="centre"/>
-        <xsl:call-template name="comma"/>
+        <xsl:text>around:</xsl:text>
         <xsl:apply-templates select="radius"/>
+        <xsl:call-template name="comma"/>
+        <xsl:apply-templates select="centre"/>
     </xsl:template>
 
 
@@ -144,7 +151,7 @@
 
     <xsl:template name="read_coordinate_with_spaces">
         <xsl:apply-templates select="@latitude"/>
-        <xsl:call-template name="whitespace"/>
+        <xsl:call-template name="encode_space"/>
         <xsl:apply-templates select="@longitude"/>
     </xsl:template>
 
@@ -161,7 +168,7 @@
 
     <xsl:template name="string-rtrim">
         <xsl:param name="string"/>
-        <xsl:param name="trim" select="$whitespace"/>
+        <xsl:param name="trim" select="$encoded_whitespace"/>
 
         <xsl:variable name="length" select="string-length($string)"/>
 
@@ -215,11 +222,20 @@
                 <xsl:value-of select="'='"/>
             </xsl:when>
 
+            <xsl:when test=". = 'regexpr not equals'">
+                <xsl:value-of select="'!~'"/>
+            </xsl:when>
+
+            <xsl:when test=". = 'regexpr equals'">
+                <xsl:value-of select="'~'"/>
+            </xsl:when>
+
             <xsl:when test=". = 'not equals'">
                 <xsl:value-of select="'!='"/>
             </xsl:when>
 
-            <xsl:when test=". = 'tilde'">
+
+            <xsl:when test=". = ''">
                 <xsl:value-of select="'~'"/>
             </xsl:when>
 
@@ -232,7 +248,9 @@
     </xsl:template>
 
     <xsl:template match="value">
+        <xsl:text>"</xsl:text>
         <xsl:value-of select="."/>
+        <xsl:text>"</xsl:text>
         <xsl:call-template name="close_big_bracket"/>
     </xsl:template>
 </xsl:stylesheet>
