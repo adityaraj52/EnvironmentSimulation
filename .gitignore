@@ -8,6 +8,7 @@
 !*.md
 !*.xsd
 !*.xsl
+!*.xjb
 
 !src/site/*.doxyfile
 !src/site/*.htm*
