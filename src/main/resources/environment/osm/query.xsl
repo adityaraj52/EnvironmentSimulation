@@ -126,9 +126,9 @@
 
     <xsl:template match="circle">
         <xsl:text>around:</xsl:text>
-        <xsl:apply-templates select="centre"/>
-        <xsl:call-template name="comma"/>
         <xsl:apply-templates select="radius"/>
+        <xsl:call-template name="comma"/>
+        <xsl:apply-templates select="centre"/>
     </xsl:template>
 
 
