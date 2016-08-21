@@ -1,9 +1,8 @@
 package data.query.osm;
 
 import com.codepoetics.protonpack.StreamUtils;
-import query.IQueryBuilder;
-import query.IXMLQueryBuilder;
 
+import javax.management.Query;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;

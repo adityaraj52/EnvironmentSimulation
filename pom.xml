@@ -248,6 +248,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <schemaDirectory>src/main/xsd</schemaDirectory>
+                    <schemaIncludes>
+                        <include>**/*.xsd</include>
+                    </schemaIncludes>
+                    <bindingIncludes>**/*.xjb</bindingIncludes>
+                </configuration>
             </plugin>
 
 

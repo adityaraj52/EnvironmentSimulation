@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
-    <!-- http://stackoverflow.com/questions/23110212/transforming-one-jaxb-object-to-another-using-xslt -->
-
     <xs:element name="query">
         <xs:annotation>
             <xs:documentation>filter structure</xs:documentation>
