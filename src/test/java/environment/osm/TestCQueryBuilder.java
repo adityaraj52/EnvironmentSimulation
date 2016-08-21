@@ -22,6 +22,10 @@ import java.util.stream.Stream;
 @RunWith( DataProviderRunner.class )
 public final class TestCQueryBuilder
 {
+    /**
+     * country code for query builder
+     */
+    private static final CQueryBuilder.ECountry COUNTRY = CQueryBuilder.ECountry.FR;
 
     /**
      * query generator for defining filter queries
@@ -35,7 +39,7 @@ public final class TestCQueryBuilder
     {
         return Stream.of(
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         //.rectangle( 50.745, 7.17, 50.75, 7.18 )
                         .circle( 50.745, 7.17, 100 )
                         //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
@@ -43,7 +47,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "." )
                         .url(),
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         //.rectangle( 50.745, 7.17, 50.75, 7.18 )
                         .circle( 50.745, 7.17, 800 )
                         //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
@@ -51,7 +55,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.REGEXPR_EQUALS, "plat" )
                         .url(),
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         .polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         //.rectangle( 50.745, 7.17, 50.75, 8.18 )
                         //.circle( 50.745, 7.17, 800 )
@@ -60,7 +64,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.REGEXPR_NOT_EQUALS, "form" )
                         .url(),
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         .rectangle( 0.74794, 0.17, 89, 89.17333 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "residential" )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "stop_area" )
@@ -69,7 +73,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.TOURISM, Ioperator.NOT_EQUALS, "aquarium" )
                         .url(),
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         .rectangle( 50.7479, 7.172, 50.756, 7.17333 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "service" )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "user_defined" )
@@ -78,7 +82,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.TOURISM, Ioperator.EQUALS, "gallery" )
                         .url(),
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         .circle( 40.745, 8.17, 900 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "primary_link" )
                         .filter( Ikey.BUILDING, Ioperator.NOT_EQUALS, "apartments" )
@@ -87,7 +91,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.TOURISM, Ioperator.NOT_EQUALS, "hotel" )
                         .url(),
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         .rectangle( 50, 7.17, 50.75, 7.17333 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "secondary_link" )
                         .filter( Ikey.BUILDING, Ioperator.EQUALS, "farm" )
@@ -96,7 +100,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.TOURISM, Ioperator.EQUALS, "information" )
                         .url(),
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         .rectangle( 50, 7.17, 50.75, 7.17333 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "living_street" )
                         .filter( Ikey.BUILDING, Ioperator.NOT_EQUALS, "hotel" )
@@ -105,7 +109,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.TOURISM, Ioperator.NOT_EQUALS, "museum" )
                         .url(),
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         .circle( 50.745, 7.17, 1000 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "raceway" )
                         .filter( Ikey.BUILDING, Ioperator.NOT_EQUALS, "house" )
@@ -113,7 +117,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.TOURISM, Ioperator.EQUALS, "theme_park" )
                         .url(),
 
-                new CQueryBuilder( CQueryBuilder.ECountry.FR )
+                new CQueryBuilder( COUNTRY )
                         .rectangle( 5.74, 3.1581, 50.7565, 77.1777 )
                         .filter( Ikey.HIGHWAY, Ioperator.NOT_EQUALS, "road" )
                         .filter( Ikey.BUILDING, Ioperator.EQUALS, "detached" )
