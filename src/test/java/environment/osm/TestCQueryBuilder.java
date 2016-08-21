@@ -37,7 +37,7 @@ public final class TestCQueryBuilder
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
                         //.rectangle( 50.745, 7.17, 50.75, 7.18 )
-                        .circle( 10000, 50.745, 7.17 )
+                        .circle( 50.745, 7.17, 100 )
                         //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "bus_stop" )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "." )
@@ -45,7 +45,7 @@ public final class TestCQueryBuilder
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
                         //.rectangle( 50.745, 7.17, 50.75, 7.18 )
-                        .circle( 10000, 50.745, 7.17 )
+                        .circle( 50.745, 7.17, 800 )
                         //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "." )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.REGEXPR_EQUALS, "plat" )
@@ -54,10 +54,10 @@ public final class TestCQueryBuilder
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
                         .polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         //.rectangle( 50.745, 7.17, 50.75, 8.18 )
-                        //.circle( 800, 50.745, 7.17 )
+                        //.circle( 50.745, 7.17, 800 )
                         //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "." )
-                        .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.REGEXPR_EQUALS, "form" )
+                        .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.REGEXPR_NOT_EQUALS, "form" )
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
@@ -79,7 +79,7 @@ public final class TestCQueryBuilder
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
-                        .circle( 1000, 40.745, 8.17 )
+                        .circle( 40.745, 8.17, 900 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "primary_link" )
                         .filter( Ikey.BUILDING, Ioperator.NOT_EQUALS, "apartments" )
                         .filter( Ikey.RAILWAYS, Ioperator.EQUALS, "miniature" )
@@ -106,7 +106,7 @@ public final class TestCQueryBuilder
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
-                        .circle( 1000, 50.745, 7.17 )
+                        .circle( 50.745, 7.17, 1000 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "raceway" )
                         .filter( Ikey.BUILDING, Ioperator.NOT_EQUALS, "house" )
                         .filter( Ikey.RAILWAYS, Ioperator.NOT_EQUALS, "subway" )
