@@ -36,26 +36,19 @@ public final class TestCQueryBuilder
         return Stream.of(
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
-                        //.rectangle( 50.745, 7.17, 50.75, 7.18 )
                         .circle( 50.745, 7.17, 100 )
-                        //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "bus_stop" )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.EQUALS, "." )
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
-                        //.rectangle( 50.745, 7.17, 50.75, 7.18 )
                         .circle( 50.745, 7.17, 800 )
-                        //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "." )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.REGEXPR_EQUALS, "plat" )
                         .url(),
 
                 new CQueryBuilder( CQueryBuilder.ECountry.FR )
                         .polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
-                        //.rectangle( 50.745, 7.17, 50.75, 8.18 )
-                        //.circle( 50.745, 7.17, 800 )
-                        //.polygon( 50.7, 7.1, 50.7, 7.2, 50.75, 7.15 )
                         .filter( Ikey.HIGHWAY, Ioperator.EQUALS, "." )
                         .filter( Ikey.PUBLIC_TRANSPORT, Ioperator.REGEXPR_NOT_EQUALS, "form" )
                         .url(),
@@ -120,10 +113,7 @@ public final class TestCQueryBuilder
                         .filter( Ikey.RAILWAYS, Ioperator.EQUALS, "preserved" )
                         .filter( Ikey.TOURISM, Ioperator.NOT_EQUALS, "viewpoint" )
                         .url()
-                // @todo put for each OSM key and a combination of two different keys and
-                // each bounding-box a new query-builder here (at least ( 10 keys + 5 key-pairs ) * 3 bounding-boxes = 45 test-cases,
-                // mix-up with different operator like equals / not-equals / regular-expression-equals / regular-expression-not-equals, so
-                // each operator should be used
+
         ).toArray();
     }
 
